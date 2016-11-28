@@ -1,1 +1,1 @@
-web: gunicorn lppartviz.wsgi --log-file -
+web: gunicorn leather.wsgi --log-file -
