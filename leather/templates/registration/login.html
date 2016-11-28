@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block page-title %}Log in - {{ block.super }}{% endblock %}
+
+{% block content %}
+  <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
+    {% if request.GET.activationcomplete %}
+      <div>
+        Successfully confirmed email! Log in below.
+      </div>
+    {% endif %}
+    {% if form.errors %}
+      {% if form.non_field_errors %}
+        <div>
+          {{ form.non_field_errors }}
+        </div>
+      {% else %}
+        <div>
+          Please fix the errors below.
+        </div>
+      {% endif %}
+    {% endif %}
+      <fieldset>
+        <legend>Log in</legend>
+        <div>
+          <label for="id_username">Username:</label>
+          <div>
+            {{ form.username }}
+            {% if form.errors.username %}
+              <span>
+                {% for error in form.errors.username  %}
+                  {{ error }}
+                {% endfor %}
+              </span>
+            {% endif %}
+          </div>
+        </div>
+        <div>
+          <label for="id_password">Password</label>
+          <div>
+            {{ form.password }}
+            {% if form.errors.password %}
+              <span>
+                {% for error in form.errors.password  %}
+                  {{ error }}
+                {% endfor %}
+              </span>
+            {% endif %}
+          </div>
+        </div>
+        <div>
+          <a href="/signup/">Sign up</a>
+          <a href="{% url 'auth_password_reset' %}">Reset password</a>
+          <button type="submit">Log in</button>
+        </div>
+      </fieldset>
+      <input type="hidden" name="next" value="{{ next }}" />
+      {% csrf_token %}
+  </form>
+{% endblock %}

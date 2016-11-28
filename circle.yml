@@ -1,0 +1,11 @@
+checkout:
+  post:
+    - echo '{"status":"done","chunks":{"main":[{"name":"main.js","publicPath":"","path":""}]},"publicPath":""}' > webpack.stats.json
+
+database:
+  override:
+    - psql -c "CREATE USER leather WITH PASSWORD 'leather' CREATEDB;"
+
+machine:
+  python:
+    version: 3.5.0

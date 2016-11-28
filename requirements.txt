@@ -1,0 +1,16 @@
+Django==1.9
+Markdown==2.6.5
+dj-database-url==0.4.1
+django-annoying==0.8.4
+django-filter==0.11.0
+django-registration==2.0.3
+django-webpack-loader==0.2.3
+djangorestframework==3.3.1
+gunicorn==19.3.0
+plaid-python==1.1.0
+psycopg2==2.6.1
+python-postmark==0.4.7
+pytz==2015.7
+raven==5.8.1
+stringscore==0.1.0
+whitenoise==3.2.2

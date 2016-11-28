@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block page-title %}Sign up - {{ block.super }}{% endblock %}
+
+{% block content %}
+  <form method="post" action=".">
+    {% if form.errors %}
+      {% if form.non_field_errors %}
+        <div>
+          {{ form.non_field_errors }}
+        </div>
+      {% else %}
+        <div>
+          Please fix the errors below.
+        </div>
+      {% endif %}
+    {% endif %}
+    <fieldset>
+      <div>
+        <label for="id_username">Username</label>
+        <div>
+          {{ form.username }}
+          {% if form.errors.username %}
+            <span>
+              {% for error in form.errors.username  %}
+                {{ error }}
+              {% endfor %}
+            </span>
+          {% endif %}
+        </div>
+      </div>
+      <div>
+        <label for="id_email">Email address</label>
+        <div>
+          {{ form.email }}
+          {% if form.errors.email %}
+            <span>
+              {% for error in form.errors.email  %}
+                {{ error }}
+              {% endfor %}
+            </span>
+          {% endif %}
+        </div>
+      </div>
+      <div>
+        <label for="id_password1">Password</label>
+        <div>
+          {{ form.password1 }}
+          {% if form.errors.password1 %}
+            <span>
+              {% for error in form.errors.password1  %}
+                {{ error }}
+              {% endfor %}
+            </span>
+          {% endif %}
+        </div>
+      </div>
+      <div>
+        <label for="id_password2">Confirm password</label>
+        <div>
+          {{ form.password2 }}
+          {% if form.errors.password2 %}
+            <span>
+              {% for error in form.errors.password2  %}
+                {{ error }}
+              {% endfor %}
+            </span>
+          {% endif %}
+        </div>
+      </div>
+      <div>
+        <a href="/login/">Log in</a>
+        <button type="submit">Sign up</button>
+      </div>
+    </fieldset>
+    {% csrf_token %}
+  </form>
+{% endblock %}

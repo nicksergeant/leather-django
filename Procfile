@@ -1,0 +1,1 @@
+web: gunicorn lppartviz.wsgi --log-file -

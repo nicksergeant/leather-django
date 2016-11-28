@@ -1,0 +1,14 @@
+*.dump
+*.log
+*.pgdump
+*.pyc
+*.sqlite3
+*.un~
+.gunicorn.pid
+.sass-cache
+.venv
+/leather/static/bundles
+/node_modules
+/static
+__py_cache__
+webpack.stats.json

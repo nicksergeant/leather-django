@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block page-title %}Logged out - {{ block.super }}{% endblock %}
+
+{% block content %}
+  <div>
+    Successfully logged out. <a href="{% url 'auth_login' %}">Log in</a> again?
+  </div>
+{% endblock %}
