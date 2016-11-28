@@ -1,9 +1,11 @@
 import dj_database_url
 import os
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+
 ACCOUNT_ACTIVATION_DAYS = 0
 ALLOWED_HOSTS = ['*']
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 CSRF_COOKIE_HTTPONLY = True
 CSRF_COOKIE_SECURE = True if 'USE_SSL' in os.environ else False
 DEBUG = True if 'DEBUG' in os.environ else False
@@ -14,7 +16,7 @@ INTERNAL_IPS = ['127.0.0.1']
 LANGUAGE_CODE = 'en-us'
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/login/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'leather', 'media')
+MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
 PLAID_CLIENT_ID = os.environ.get('PLAID_CLIENT_ID', '')
 PLAID_SECRET = os.environ.get('PLAID_SECRET', '')
 POSTMARK_API_KEY = os.environ.get('POSTMARK_API_KEY', '')
@@ -26,9 +28,9 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SECURE_SSL_REDIRECT = True if 'USE_SSL' in os.environ else False
 SERVER_EMAIL = os.environ.get('SERVER_EMAIL', '')
 SESSION_COOKIE_SECURE = True if 'USE_SSL' in os.environ else False
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'leather', 'static'),)
+STATICFILES_DIRS = (os.path.join(PROJECT_ROOT, 'static'),)
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
 TIME_ZONE = 'America/New_York'
 USE_I18N = True
