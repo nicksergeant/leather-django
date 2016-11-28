@@ -1,4 +1,5 @@
 #!/bin/bash
 export PATH=/app/.heroku/node/bin:$PATH
+npm install
 node webpack.dev-server.js
 ./manage.py collectstatic --noinput
