@@ -1,5 +1,4 @@
 #!/bin/bash
 export PATH=/app/.heroku/node/bin:$PATH
-npm install
-node webpack.dev-server.js
+./node_modules/.bin/webpack --config webpack.config.prod.js
 ./manage.py collectstatic --noinput
