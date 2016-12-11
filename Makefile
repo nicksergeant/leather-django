@@ -7,7 +7,7 @@ update-accounts:
 webpack:
 	@node webpack.dev-server.js
 
-.PHONY: db-server \
+.PHONY: \
 	deploy \
 	update-accounts \
 	webpack
