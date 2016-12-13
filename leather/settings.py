@@ -1,5 +1,6 @@
 import dj_database_url
 import os
+import raven
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -81,6 +82,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'raven.contrib.django.raven_compat',
     'registration',
     'rest_framework',
     'webpack_loader',
@@ -105,6 +107,11 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
+
+RAVEN_CONFIG = {
+    'dsn': os.environ.get('RAVEN_DSN', ''),
+    'release': raven.fetch_git_sha(os.path.dirname(os.pardir)),
+}
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'leather.api.pagination.Pagination',
