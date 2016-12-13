@@ -10,5 +10,7 @@ machine:
   environment:
     DISABLE_WHITENOISE: True
     SECRET_KEY: 123
+  node:
+      version: 6.9.2
   python:
     version: 3.5.0
