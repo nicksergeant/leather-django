@@ -7,6 +7,8 @@ database:
     - psql -c "CREATE USER leather WITH PASSWORD 'leather' CREATEDB;"
 
 machine:
+  environment:
+    SECRET_KEY: 123
   python:
     version: 3.5.0
 
