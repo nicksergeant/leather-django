@@ -1,49 +1,51 @@
 {
   "name": "leather",
-  "version": "0.0.1",
-  "description": "",
+  "author": "Leather",
+  "description": "A modern money management app.",
+  "engines": {
+    "node": "6.9.2"
+  },
+  "homepage": "https://github.com/nicksergeant/leather#readme",
+  "license": "ISC",
   "main": "index.js",
-  "scripts": {
-    "test": "eslint leather/static/js && node_modules/mocha/bin/mocha --compilers js:babel/register leather/static/js/tests/**",
-    "webpack-production": "webpack --config webpack.config.prod.js"
+  "version": "0.0.1",
+  "bugs": {
+    "url": "https://github.com/nicksergeant/leather/issues"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nicksergeant/leather.git"
   },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/nicksergeant/leather/issues"
+  "scripts": {
+    "test": "eslint leather/static/js && node_modules/mocha/bin/mocha --compilers js:babel/register leather/static/js/tests/**",
+    "webpack-production": "webpack --config webpack.config.prod.js"
   },
-  "homepage": "https://github.com/nicksergeant/leather#readme",
   "dependencies": {
-    "babel": "^5.8.34",
-    "babel-core": "^5.8.34",
-    "babel-loader": "^5.4.0",
-    "babel-runtime": "^5.8.34",
-    "chai": "^3.4.1",
-    "css-loader": "^0.23.0",
-    "eslint": "^1.10.1",
-    "eslint-plugin-react": "^3.10.0",
-    "extract-text-webpack-plugin": "^0.9.1",
-    "lodash": "^3.10.1",
-    "mocha": "^2.3.3",
-    "moment": "^2.11.0",
-    "node-sass": "^3.4.2",
-    "react": "^0.14.3",
-    "react-addons-test-utils": "^0.14.3",
-    "react-dom": "^0.14.3",
-    "react-hot-loader": "^1.3.0",
-    "react-redux": "^4.0.5",
-    "redux": "^3.0.5",
-    "sass-loader": "^3.1.2",
-    "sinon": "^1.17.2",
-    "sinon-as-promised": "^4.0.0",
-    "style-loader": "^0.13.0",
-    "superagent": "^1.6.1",
-    "webpack": "^1.12.9",
+    "babel": "5.8.38",
+    "babel-core": "5.8.38",
+    "babel-loader": "5.4.2",
+    "babel-runtime": "5.8.38",
+    "chai": "3.5.0",
+    "css-loader": "0.26.1",
+    "eslint": "3.12.1",
+    "eslint-plugin-react": "6.8.0",
+    "extract-text-webpack-plugin": "1.0.1",
+    "lodash": "4.17.2",
+    "mocha": "3.2.0",
+    "moment": "2.17.1",
+    "react": "15.4.1",
+    "react-addons-test-utils": "15.4.1",
+    "react-dom": "15.4.1",
+    "react-hot-loader": "1.3.1",
+    "react-redux": "4.4.6",
+    "redux": "3.6.0",
+    "sass-loader": "4.0.2",
+    "sinon": "1.17.6",
+    "sinon-as-promised": "4.0.2",
+    "style-loader": "0.13.1",
+    "superagent": "3.2.1",
+    "webpack": "1.14.0",
     "webpack-bundle-tracker": "0.0.8",
-    "webpack-dev-server": "^1.14.0"
+    "webpack-dev-server": "1.16.2"
   }
 }
