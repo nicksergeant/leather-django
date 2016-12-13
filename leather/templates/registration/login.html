@@ -3,7 +3,7 @@
 {% block page-title %}Log in - {{ block.super }}{% endblock %}
 
 {% block content %}
-  <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
+  <form method="post" action="/login/">
     {% if request.GET.activationcomplete %}
       <div>
         Successfully confirmed email! Log in below.

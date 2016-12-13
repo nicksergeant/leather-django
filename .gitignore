@@ -4,6 +4,7 @@
 *.pyc
 *.sqlite3
 *.un~
+.env
 .gunicorn.pid
 .sass-cache
 .venv
