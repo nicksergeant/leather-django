@@ -9,3 +9,7 @@ database:
 machine:
   python:
     version: 3.5.0
+
+test:
+  pre:
+    - "python manage.py collectstatic --no-input"

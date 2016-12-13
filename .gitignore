@@ -12,4 +12,5 @@
 /node_modules
 /static
 __py_cache__
+staticfiles
 webpack.stats.json
