@@ -29,7 +29,6 @@ SECURE_SSL_REDIRECT = True if 'USE_SSL' in os.environ else False
 SERVER_EMAIL = os.environ.get('SERVER_EMAIL', '')
 SESSION_COOKIE_SECURE = True if 'USE_SSL' in os.environ else False
 STATICFILES_DIRS = (os.path.join(PROJECT_ROOT, 'static'),)
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
 TIME_ZONE = 'America/New_York'
@@ -39,6 +38,11 @@ USE_TZ = True
 USE_X_FORWARDED_HOST = True
 WSGI_APPLICATION = 'leather.wsgi.application'
 X_FRAME_OPTIONS = 'DENY'
+
+if 'DISABLE_WHITENOISE' in os.environ:
+    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+else:
+    STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 DATABASES = {
     'default': {

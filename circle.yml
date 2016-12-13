@@ -8,11 +8,7 @@ database:
 
 machine:
   environment:
+    DISABLE_WHITENOISE: True
     SECRET_KEY: 123
   python:
     version: 3.5.0
-
-test:
-  pre:
-    - "./node_modules/.bin/webpack --config webpack.config.prod.js"
-    - "python manage.py collectstatic --no-input"
