@@ -1,4 +1,4 @@
-import * as AccountActions from '../actions/account';
+import * as AccountActions from '../actions/accounts';
 import * as TransactionActions from '../actions/transactions';
 import * as filters from '../filters/accounts';
 import AccountNameForm from '../components/accounts/account-name-form';

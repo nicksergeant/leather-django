@@ -1,7 +1,7 @@
 import AccountDetailContainer from './containers/account-detail-container';
+import AllTransactionsContainer from './containers/all-transactions-container';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AllTransactionsContainer from './containers/all-transactions-container';
 import TransactionsContainer from './containers/transactions-container';
 import request from 'superagent';
 import rootReducer from './reducers/root';
@@ -9,7 +9,7 @@ import { Provider } from 'react-redux';
 import { addScheduledTransaction } from './actions/scheduled-transactions';
 import { addTransaction } from './actions/transactions';
 import { createStore } from 'redux';
-import { updateAccount } from './actions/account';
+import { addAccount } from './actions/accounts';
 
 import '../css/styles.scss';
 
@@ -36,13 +36,13 @@ const fetchAndStore = (url, action) => {
 };
 
 if (accountDetail) {
-  fetchAndStore('/api/accounts/' + window.accountId + '/', updateAccount);
+  fetchAndStore('/api/accounts/' + window.accountId + '/', addAccount);
   fetchAndStore('/api/scheduled_transactions/?account=' + window.accountId, addScheduledTransaction);
   fetchAndStore('/api/transactions/?limit=30&account=' + window.accountId, addTransaction);
 
   ReactDOM.render(
     <Provider store={store}>
-      <AccountDetailContainer />
+      <AccountDetailContainer account={window.accountId} />
     </Provider>,
     accountDetail
   );
