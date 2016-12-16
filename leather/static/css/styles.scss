@@ -4,16 +4,6 @@ body {
   margin: 0;
   overflow: hidden;
   padding: 50px;
-
-  &.dashboard {
-    background: #F8F5EE;
-    overflow: auto;
-    padding: 0;
-
-    .inner {
-      padding: 20px;
-    }
-  }
 }
 
 .group:after {
@@ -31,6 +21,7 @@ header {
     width: 50px;
   }
 }
+
 @media (max-width: 950px) {
   body {
     overflow: auto;
@@ -479,5 +470,73 @@ div#account-name {
     font-weight: bold;
     position: absolute;
     top: 13px;
+  }
+}
+
+body.dashboard {
+  background: #F8F5EE;
+  overflow: auto;
+  padding: 0;
+
+  a {
+    color: #272E32;
+  }
+
+  aside.main {
+    background: #F2F2F2;
+    font-size: 14px;
+    height: 100%;
+    left: 0;
+    line-height: 26px;
+    position: fixed;
+    top: 0;
+    width: 230px;
+
+    a.logo {
+      background: #F8F5EE;
+      color: #394248;
+      display: block;
+      font-size: 16px;
+      font-weight: bold;
+      padding: 20px;
+      text-decoration: none;
+      text-transform: uppercase;
+
+      img {
+        margin-right: 0px;
+        vertical-align: middle;
+        width: 40px;
+      }
+    }
+    div.inner {
+      padding: 20px;
+    }
+    button {
+      background: #23AEEC;
+      border: 0;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+      margin: 20px 0;
+      padding: 10px !important;
+      text-transform: uppercase;
+
+      &:hover {
+        background: #23AEEC - 20;
+      }
+    }
+    div.profile-links {
+      margin-top: 10px;
+    }
+  }
+
+  section.main {
+    background: white;
+    height: 100%;
+    left: 230px;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    width: calc(100% - 230px);
   }
 }

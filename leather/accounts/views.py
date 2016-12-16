@@ -19,25 +19,6 @@ else:
 
 
 @login_required
-def account_detail(request, account_id):
-    account = Account.objects.get(id=account_id,
-                                  plaid_account__user=request.user)
-    scheduled_transactions = ScheduledTransaction.objects.filter(
-        account=account,
-        match=None
-    )
-    return render(request, 'account-detail.html', {
-        "account": account,
-        "scheduled_transactions": scheduled_transactions,
-    })
-
-
-@login_required
-def all_transactions(request):
-    return render(request, 'all-transactions.html')
-
-
-@login_required
 def plaid_account_link(request):
 
     if request.method == 'POST':
@@ -108,16 +89,3 @@ def plaid_account_delete(request, plaid_account_id):
         return HttpResponseRedirect('/')
 
     return HttpResponse('')
-
-
-@login_required
-def transaction_delete(request, transaction_id):
-    transaction = get_object_or_404(Transaction,
-                                    id=transaction_id,
-                                    account__plaid_account__user=request.user)
-
-    account = get_object_or_404(Account,
-                                id=transaction.account.id)
-    transaction.delete()
-
-    return HttpResponseRedirect(account.get_absolute_url())
