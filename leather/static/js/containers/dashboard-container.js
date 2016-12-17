@@ -21,7 +21,7 @@ DashboardContainer.propTypes = {
 function mapStateToProps(state) {
   return {
     accounts: state.accounts
-  }
+  };
 }
 
 function mapDispatchToProps(dispatch) {
