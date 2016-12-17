@@ -7,8 +7,6 @@ import { Provider } from 'react-redux';
 import { addAccount } from './actions/accounts';
 import { createStore } from 'redux';
 
-import '../css/styles.scss';
-
 const store = createStore(rootReducer);
 
 window.state = store.getState; // DEBUG

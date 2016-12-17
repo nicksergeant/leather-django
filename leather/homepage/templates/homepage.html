@@ -2,23 +2,17 @@
 
 {% load staticfiles %}
 
+{% block body-class %}homepage{% endblock %}
+
 {% block content %}
-  <video autoplay loop class="fillWidth" poster="{% static 'img/promo.jpg' %}">
-    <source src="https://leatherapp.s3.amazonaws.com/promo.mp4" type="video/mp4"></source>
-    <source src="https://leatherapp.s3.amazonaws.com/promo.webm" type="video/webm"></source>
-  </video>
-  <div class="promo">
-    <a href="/"><img src="{% static 'img/logo.png' %}" alt=""></a>
-    <h2>We're building a beautiful interface for your checking account,<br />no matter who you bank with.</h2>
-    <h3>Subscribe to be notified when we're ready</h3>
-    <div class="sub">
-      <div class="createsend-button" style="height:27px;display:inline-block;" data-listid="i/52/2E4/F8B/F771C2752DA1A1D5">
-      </div><script type="text/javascript">(function () { var e = document.createElement('script'); e.type = 'text/javascript'; e.async = true; e.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://btn.createsend1.com/js/sb.min.js?v=3'; e.className = 'createsend-script'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(e, s); })();</script>
-    </div>
-    <div class="tw">
-      <a class="twitter-follow-button"
-        href="https://twitter.com/leatherapp">
-        Follow @leatherapp</a>
-    </div>
+  <a class="logo" href="/">
+    <img src="/static/img/logo-avatar.png" alt="" />
+    Leather
+  </a>
+  <h2>We're building a beautiful app for your finances.</h2>
+  <h3>Subscribe to be notified when we're ready</h3>
+  <div class="sub">
+    <div class="createsend-button" style="height:27px;display:inline-block;" data-listid="i/52/2E4/F8B/F771C2752DA1A1D5">
+    </div><script type="text/javascript">(function () { var e = document.createElement('script'); e.type = 'text/javascript'; e.async = true; e.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://btn.createsend1.com/js/sb.min.js?v=3'; e.className = 'createsend-script'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(e, s); })();</script>
   </div>
 {% endblock %}

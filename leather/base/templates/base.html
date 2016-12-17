@@ -10,7 +10,7 @@
   <link rel="apple-touch-icon" href="{% static 'img/apple-touch-icon.png' %}?f=1">
   <link rel="icon" href="{% static 'img/favicon.ico' %}" />
   <script type="text/javascript">window.csrf_token = '{{ csrf_token }}';</script>
-  {% render_bundle 'main' 'css' %}
+  <link href="/static/css/styles.css" rel="stylesheet" />
   {% block head-js %}{% endblock %}
 </head>
 <body class="{% block body-class %}{% endblock %}">
