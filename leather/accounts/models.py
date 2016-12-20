@@ -13,7 +13,8 @@ class PlaidAccount(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return 'Plaid Account for {} ({})'.format(self.access_token[-4:])
+        return 'Plaid Account for {} ({})'.format(self.user,
+                                                  self.access_token[-4:])
 
 
 class Account(models.Model):
