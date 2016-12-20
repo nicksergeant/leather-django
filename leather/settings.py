@@ -1,6 +1,5 @@
 import dj_database_url
 import os
-import raven
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -10,7 +9,7 @@ ALLOWED_HOSTS = ['*']
 CSRF_COOKIE_HTTPONLY = True
 CSRF_COOKIE_SECURE = True if 'USE_SSL' in os.environ else False
 DEBUG = True if 'DEBUG' in os.environ else False
-DEBUG_WEBHOOK_IP = '123.45.67.890'
+DEBUG_WEBHOOK_IP = os.environ.get('DEBUG_WEBHOOK_IP', '123.45.67.890')
 DEFAULT_FROM_EMAIL = os.environ.get('SERVER_EMAIL', '')
 EMAIL_BACKEND = 'postmark.django_backend.EmailBackend'
 INTERNAL_IPS = ['127.0.0.1']

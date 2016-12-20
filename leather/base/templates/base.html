@@ -9,12 +9,19 @@
   <title>{% block page-title %}Leather{% endblock %}</title>
   <link rel="apple-touch-icon" href="{% static 'img/apple-touch-icon.png' %}?f=1">
   <link rel="icon" href="{% static 'img/favicon.ico' %}" />
-  <script type="text/javascript">window.csrf_token = '{{ csrf_token }}';</script>
+  <script type="text/javascript">
+    window.LeatherGlobals = {
+      csrfToken: '{{ csrf_token }}',
+      debug: {% if debug %}true{% else %}false{% endif %},
+      debugWebhookIP: '{{ debug_webhook_ip }}'
+    };
+  </script>
   <link href="/static/css/styles.css" rel="stylesheet" />
   {% block head-js %}{% endblock %}
 </head>
 <body class="{% block body-class %}{% endblock %}">
   {% block content %}{% endblock %}
+  <script src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"></script>
   {% render_bundle 'main' 'js' %}
 </body>
 </html>

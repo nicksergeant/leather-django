@@ -6,6 +6,8 @@ import rootReducer from './reducers/root';
 import { Provider } from 'react-redux';
 import { addAccount } from './actions/accounts';
 import { createStore } from 'redux';
+import { updateGlobals } from './actions/globals';
+import { updateUser } from './actions/users';
 
 const dashboard = document.getElementById('dashboard');
 
@@ -30,6 +32,9 @@ if (dashboard) {
       });
   };
 
+  store.dispatch(updateGlobals(window.LeatherGlobals));
+
+  fetchAndStore('/api/users', updateUser);
   fetchAndStore('/api/accounts', addAccount);
 
   ReactDOM.render(
