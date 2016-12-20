@@ -26,15 +26,11 @@ module.exports = {
         include: path.resolve('./leather/static/js'),
         exclude: /node_modules/,
         loaders: ['react-hot', 'babel?stage=1']
-      },
-      {
-        test: /\.scss$/,
-        loader: 'style!css?sourceMap!sass?sourceMap=true'
       }
     ]
   },
   resolve: {
     modulesDirectories: ['node_modules'],
-    extensions: ['', '.scss', '.js', '.jsx']
+    extensions: ['', '.js', '.jsx']
   }
 };

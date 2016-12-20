@@ -1,12 +1,8 @@
-import account from './account';
-import transactions from './transactions';
-import scheduledTransactions from './scheduled-transactions';
+import accounts from './accounts';
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
-  account,
-  transactions,
-  scheduledTransactions
+  accounts
 });
 
 export default rootReducer;

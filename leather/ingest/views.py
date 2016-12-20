@@ -1,7 +1,7 @@
 from annoying.decorators import ajax_request
 from datetime import datetime, timedelta
 from django.views.decorators.csrf import csrf_exempt
-from leather.ingest.actions import remove_transactions, update_plaid_account
+from leather.ingest.actions import update_plaid_account
 from leather.ingest.errors import IngestError
 from leather.ingest.models import Ingest
 
@@ -41,7 +41,8 @@ def plaid_webhook(request):
 
         # Transactions removed
         elif code == 3:
-            remove_transactions(access_token, response['removed_transactions'])
+            # Currently not handling removed transactions
+            pass
 
         else:
             raise IngestError('Error for access_token {}'.format(access_token))

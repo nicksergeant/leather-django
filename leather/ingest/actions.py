@@ -7,7 +7,6 @@ from leather.forecasting.models import ScheduledTransaction
 from plaid import Client
 from stringscore import liquidmetal
 
-import datetime
 import json
 
 
@@ -35,19 +34,9 @@ def match_transactions(transaction, scheduled_transaction):
     transaction.save()
 
 
-def remove_transactions(access_token, transaction_ids):
-    for transaction_id in transaction_ids:
-        trans = get_object_or_None(Transaction,
-                                   account__plaid_account__access_token=access_token,
-                                   plaid_id=transaction_id)
-        if trans:
-            trans.removal_requested = datetime.date.today()
-            trans.save()
-
-
 def transactions_do_match(transaction, scheduled_transaction):
     amount = scheduled_transaction.amount
-    variance = amount * Decimal(.25)
+    variance = amount * Decimal(.10)
 
     lower_bound = amount - variance
     upper_bound = amount + variance
@@ -72,22 +61,11 @@ def update_or_create_accounts(plaid_account, accounts):
         account = get_object_or_None(Account, plaid_id=a['_id'])
 
         if not account:
-            account = Account(plaid_account=plaid_account,
-                              plaid_id=a['_id'])
-
-        if 'balance' in a:
-            if 'available' in a['balance']:
-                account.balance_available = a['balance']['available']
-            if 'current' in a['balance']:
-                account.balance_current = a['balance']['current']
-
-        account.institution_type = a['institution_type']
-        account.meta = a['meta']
-        account.name = a['meta']['name']
-        account.raw = a
-        account.typ = a['type']
-
-        account.save()
+            account = Account(name=a['meta']['name'],
+                              plaid_account=plaid_account,
+                              plaid_id=a['_id'],
+                              user=plaid_account.user)
+            account.save()
 
 
 def update_plaid_account(access_token, from_date=None):
@@ -128,7 +106,8 @@ def update_transactions(plaid_account, transactions):
 
         account = Account.objects.get(plaid_id=t['_account'])
 
-        transaction = existing or Transaction(account=account)
+        transaction = existing or \
+            Transaction(account=account, awaiting_import=True)
 
         transaction.amount = t['amount']
         transaction.categories = t.get('category', [])
@@ -136,7 +115,6 @@ def update_transactions(plaid_account, transactions):
         transaction.date = t['date']
         transaction.meta = t['meta']
         transaction.name = t['name']
-        transaction.pending = t['pending']
         transaction.plaid_id = t['_id']
         transaction.raw = t
         transaction.score = t['score']
@@ -144,30 +122,9 @@ def update_transactions(plaid_account, transactions):
 
         transaction = auto_rename_transaction(transaction)
 
-        if '_pendingTransaction' in t:
-            pending_transaction = get_object_or_None(
-                Transaction,
-                plaid_id=t['_pendingTransaction'],
-                account__plaid_account=plaid_account
-            )
-
-            if pending_transaction:
-
-                transaction.custom_name = pending_transaction.custom_name
-                transaction.memo = pending_transaction.memo
-
-                try:
-                    pending_transaction.scheduledtransaction.delete()
-
-                except ScheduledTransaction.DoesNotExist:
-                    pass
-
-                pending_transaction.delete()
-
         transaction.save()
 
         if not existing:
-
             scheduled_transactions = ScheduledTransaction.objects.filter(
                 account=account,
                 match=None

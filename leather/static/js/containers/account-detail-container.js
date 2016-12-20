@@ -1,4 +1,4 @@
-import * as AccountActions from '../actions/account';
+import * as AccountActions from '../actions/accounts';
 import * as TransactionActions from '../actions/transactions';
 import * as filters from '../filters/accounts';
 import AccountNameForm from '../components/accounts/account-name-form';
@@ -44,14 +44,12 @@ class AccountDetailContainer extends Component {
 }
 
 AccountDetailContainer.propTypes = {
-  account: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired,
   scheduledTransactions: PropTypes.array.isRequired
 };
 
 function mapStateToProps(state) {
   return {
-    account: state.account,
     scheduledTransactions: state.scheduledTransactions
   };
 }

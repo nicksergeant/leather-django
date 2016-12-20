@@ -3,10 +3,8 @@ from datetime import datetime, timedelta
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render
 from leather.accounts.models import Account, PlaidAccount
 from leather.accounts.models import Transaction
-from leather.forecasting.models import ScheduledTransaction
 from leather.ingest.actions import update_plaid_account
 from plaid import Client
 
@@ -19,29 +17,8 @@ else:
 
 
 @login_required
-def account_detail(request, account_id):
-    account = Account.objects.get(id=account_id,
-                                  plaid_account__user=request.user)
-    scheduled_transactions = ScheduledTransaction.objects.filter(
-        account=account,
-        match=None
-    )
-    return render(request, 'account-detail.html', {
-        "account": account,
-        "scheduled_transactions": scheduled_transactions,
-    })
-
-
-@login_required
-def all_transactions(request):
-    return render(request, 'all-transactions.html')
-
-
-@login_required
 def plaid_account_link(request):
-
     if request.method == 'POST':
-
         public_token = request.POST.get('public_token')
 
         client = Client(client_id=settings.PLAID_CLIENT_ID,
@@ -79,9 +56,7 @@ def plaid_account_link(request):
 
 @login_required
 def plaid_account_delete(request, plaid_account_id):
-
     if request.method == 'POST':
-
         plaid_account = PlaidAccount.objects.get(id=plaid_account_id,
                                                  user=request.user)
 
@@ -92,7 +67,6 @@ def plaid_account_delete(request, plaid_account_id):
         response = client.connect_delete()
 
         if response.status_code == 200:
-
             accounts = Account.objects.filter(plaid_account=plaid_account)
 
             for account in accounts:
@@ -108,16 +82,3 @@ def plaid_account_delete(request, plaid_account_id):
         return HttpResponseRedirect('/')
 
     return HttpResponse('')
-
-
-@login_required
-def transaction_delete(request, transaction_id):
-    transaction = get_object_or_404(Transaction,
-                                    id=transaction_id,
-                                    account__plaid_account__user=request.user)
-
-    account = get_object_or_404(Account,
-                                id=transaction.account.id)
-    transaction.delete()
-
-    return HttpResponseRedirect(account.get_absolute_url())

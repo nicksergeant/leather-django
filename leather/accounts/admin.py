@@ -11,9 +11,9 @@ admin.site.register(PlaidAccount, PlaidAccountAdmin)
 
 
 class AccountAdmin(admin.ModelAdmin):
-    list_display = ('__str__', 'created_at')
+    list_display = ('__str__', 'user', 'created_at')
     list_filter = ('created_at',)
-    search_fields = ['raw']
+    search_fields = ['user__username']
 
 admin.site.register(Account, AccountAdmin)
 

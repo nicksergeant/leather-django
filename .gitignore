@@ -9,6 +9,7 @@
 .sass-cache
 .venv
 /leather/static/bundles
+/leather/static/css/styles.css
 /node_modules
 /static
 __py_cache__

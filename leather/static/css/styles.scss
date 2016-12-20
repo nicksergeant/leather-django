@@ -1,19 +1,11 @@
+html, body {
+  background: transparent url('/static/img/home-bg.png') top left repeat;
+}
+
 body {
-  color: #394248;
-  font: normal 18px 'Titillium Web', sans-serif;
+  color: #272E32;
+  font: normal 18px 'Helvetica', sans-serif;
   margin: 0;
-  overflow: hidden;
-  padding: 50px;
-
-  &.dashboard {
-    background: #F8F5EE;
-    overflow: auto;
-    padding: 0;
-
-    .inner {
-      padding: 20px;
-    }
-  }
 }
 
 .group:after {
@@ -22,462 +14,483 @@ body {
   clear: both;
 }
 
-header {
-  background: #F8F5EE;
-  padding: 10px 0;
-  text-align: center;
+a.logo {
+  background: rgba(#F8F5EE, .5);
+  border-bottom: 5px solid #eee6d4;
+  color: #394248;
+  display: block;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 40px;
+  text-decoration: none;
+  text-transform: uppercase;
 
   img {
-    width: 50px;
-  }
-}
-@media (max-width: 950px) {
-  body {
-    overflow: auto;
-  }
-  video {
-    display: none;
+    margin-right: 0px;
+    vertical-align: middle;
+    width: 40px;
   }
 }
 
-video {
-  left: -48%;
-  overflow: hidden;
-  position: absolute;
-  top: 0;
-  width: 200%;
-}
-
-div.promo {
-  margin-top: 50px;
-  position: relative;
-  text-align: center;
-}
-
-img {
-  position: relative;
-  max-width: 361px;
-  width: 100%;
-}
-
-h2 {
-  color: white;
-  font-weight: 500;
-  line-height: 36px;
-  margin: 50px auto;
-  max-width: 900px;
-}
-
-h3 {
-  color: white;
-  font-weight: 300;
-  margin: 25px auto;
-  max-width: 900px;
-}
-
-div.sub {
-  margin-top: 10px;
-}
-
-div.tw > a {
-  display: none;
-}
-
-div.tw {
-  margin-top: 10px;
-}
-
-@media (max-width: 950px) {
-  video {
-    display: none;
-  }
-}
-
-div.account-top {
-  background: #272E32;
-  color: white;
-  padding: 10px 0;
-  text-align: center;
-}
-
-div.balance-info {
-  background: #edeae4;
-  border-radius: 5px;
-  margin: 20px auto;
-  max-width: 760px;
-  padding: 10px 0;
+body.homepage {
   text-align: center;
 
-  > div {
-    float: left;
-    width: 50%;
+  h2 {
+    font-size: 34px;
+    font-weight: 500;
+    line-height: 36px;
+    margin: 150px auto;
+    max-width: 900px;
+  }
+
+  h3 {
+    font-weight: 300;
+    margin: 25px auto;
+    max-width: 900px;
+  }
+
+  div.sub {
+    margin-top: 10px;
   }
 }
 
-div.cont {
-  padding: 0 2%;
-}
-
-ul.transactions {
-  float: left;
-  margin: 20px auto;
+body.dashboard {
+  background: u#F8F5EE;
+  overflow: auto;
   padding: 0;
-  width: 60%;
 
-  &.-scheduled {
-    padding-right: 2%;
-    width: 38%;
+  a {
+    color: #272E32;
   }
 
-  li {
-    list-style-type: none;
-    margin: 0;
-    position: relative;
+  aside.main {
+    background: #F2F2F2;
+    font-size: 14px;
+    height: 100%;
+    left: 0;
+    line-height: 26px;
+    position: fixed;
+    top: 0;
+    width: 230px;
 
-    .amount {
-      text-align: right;
-      position: absolute;
-      right: 26px;
+    div.inner {
+      padding: 20px;
     }
-    .delete {
-      background: #EDEAE4;
+    button {
+      background: #23AEEC;
+      border: 0;
       border-radius: 5px;
-      color: #394248;
+      color: white;
       cursor: pointer;
-      display: inline-block;
-      font-size: 11px;
-      font-weight: bold;
-      margin-left: 1px;
-      vertical-align: 2px;
-      padding: 2px 7px;
-      position: absolute;
-      right: 10px;
-      text-decoration: none;
+      margin: 20px 0;
+      padding: 10px !important;
       text-transform: uppercase;
-      top: 14px;
-      
-      &:hover {
-        background: #C0C0C0;
-      }
-    }
-    .account {
-      color: #272E32;
-      left: -240px;
-      font-size: 14px;
-      font-style: italic;
-      position: absolute;
-      text-align: right;
-      text-decoration: none;
-      top: 11px;
-      width: 220px;
 
       &:hover {
-        text-decoration: underline;
+        background: #23AEEC - 20;
       }
     }
+    div.profile-links {
+      margin-top: 10px;
+    }
   }
-  .just-saved {
-    right: 145px;
-  }
-}
 
-@media (max-width: 950px) {
-  ul.transactions {
-    float: none;
-    width: 100% !important;
+  section.main {
+    background: white;
+    height: 100%;
+    left: 230px;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    width: calc(100% - 230px);
+  }
+
+  div.account-top {
+    background: #272E32;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+  }
+
+  div.balance-info {
+    background: #edeae4;
+    border-radius: 5px;
+    margin: 20px auto;
+    max-width: 760px;
+    padding: 10px 0;
+    text-align: center;
+
+    > div {
+      float: left;
+      width: 50%;
+    }
   }
 
   div.cont {
-    padding: 0 3%;
+    padding: 0 2%;
   }
-}
 
-.transaction {
-  background: #FFFFFF;
-  border-bottom: 1px solid #F1F3F3;
-  font-family: 'Titillium Web', sans-serif;
-  font-size: 18px;
-  padding: 5px;
-  padding-bottom: 10px;
-  position: relative;
+  ul.transactions {
+    float: left;
+    margin: 20px auto;
+    padding: 0;
+    width: 60%;
 
-  .amount {
+    &.-scheduled {
+      padding-right: 2%;
+      width: 38%;
+    }
+
+    li {
+      list-style-type: none;
+      margin: 0;
+      position: relative;
+
+      .amount {
+        text-align: right;
+        position: absolute;
+        right: 26px;
+      }
+      .delete {
+        background: #EDEAE4;
+        border-radius: 5px;
+        color: #394248;
+        cursor: pointer;
+        display: inline-block;
+        font-size: 11px;
+        font-weight: bold;
+        margin-left: 1px;
+        vertical-align: 2px;
+        padding: 2px 7px;
+        position: absolute;
+        right: 10px;
+        text-decoration: none;
+        text-transform: uppercase;
+        top: 14px;
+        
+        &:hover {
+          background: #C0C0C0;
+        }
+      }
+      .account {
+        color: #272E32;
+        left: -240px;
+        font-size: 14px;
+        font-style: italic;
+        position: absolute;
+        text-align: right;
+        text-decoration: none;
+        top: 11px;
+        width: 220px;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+    .just-saved {
+      right: 145px;
+    }
+  }
+
+  @media (max-width: 950px) {
+    ul.transactions {
+      float: none;
+      width: 100% !important;
+    }
+
+    div.cont {
+      padding: 0 3%;
+    }
+  }
+
+  .transaction {
+    background: #FFFFFF;
+    border-bottom: 1px solid #F1F3F3;
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 18px;
     padding: 5px;
-    position: absolute;
-    top: 5px;
-    right: 5px;
+    padding-bottom: 10px;
+    position: relative;
 
-    input {
+    .amount {
+      padding: 5px;
+      position: absolute;
+      top: 5px;
+      right: 5px;
+
+      input {
+        border: none;
+        font-family: 'Titillium Web', sans-serif;
+        font-size: 18px;
+        padding: 0;
+        text-align: right;
+        width: 100px;
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      &.credit, &.credit input {
+        color: #54BF98;
+      }
+      &.debit, &.debit input {
+        color: #E96E57;
+      }
+    }
+    .matched {
+      clear: left;
+      color: #969696;
+      display: block;
+      float: left;
+      font-size: 14px;
+      font-style: italic;
+      margin-left: 53px;
+      margin-top: -10px;
+
+      a {
+        color: #969696;
+        margin-left: 5px;
+      }
+    }
+    .date {
+      float: left;
+      font-size: 12px;
+      margin-left: 5px;
+      margin-top: 2px;
+      padding: 5px 10px;
+      text-transform: uppercase;
+
+      span.day {
+        display: block;
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: -8px;
+      }
+    }
+    .memo {
       border: none;
+      color: #6b8b9f;
+      float: left;
       font-family: 'Titillium Web', sans-serif;
-      font-size: 18px;
-      padding: 0;
-      text-align: right;
-      width: 100px;
+      font-size: 14px;
+      margin-bottom: 10px;
+      margin-top: -5px;
+      width: 50%;
+      padding: 0px 10px;
 
       &:focus {
         outline: none;
       }
     }
+    .name {
+      border: none;
+      color: #394248;
+      float: left;
+      font-family: 'Titillium Web', sans-serif;
+      font-size: 18px;
+      width: 50%;
+      padding: 5px 10px;
 
-    &.credit, &.credit input {
-      color: #54BF98;
+      &:focus {
+        outline: none;
+      }
     }
-    &.debit, &.debit input {
-      color: #E96E57;
+    .pending {
+      background: #F0F0F0;
+      border-radius: 2px;
+      color: black;
+      display: inline-block;
+      float: right;
+      font-size: 12px;
+      padding: 0 5px;
+      position: absolute;
+      top: 40px;
+      right: 10px;
+      vertical-align: 3px;
+      text-transform: uppercase;
+    }
+    .removal-requested {
+      background: rgba(255, 255, 255, .7);
+      box-sizing: border-box;
+      min-height: 52px;
+      position: absolute;
+      text-align: center;
+      width: 100%;
+
+      a {
+        color: red;
+        margin-left: 5px;
+      }
+    }
+    .just-saved {
+      color: #3C763D;
+      font-size: 16px;
+      font-style: italic;
+      font-weight: bold;
+      position: absolute;
+      right: 100px;
+      top: 11px;
     }
   }
-  .matched {
-    clear: left;
-    color: #969696;
-    display: block;
-    float: left;
-    font-size: 14px;
-    font-style: italic;
-    margin-left: 53px;
-    margin-top: -10px;
 
-    a {
-      color: #969696;
-      margin-left: 5px;
-    }
-  }
-  .date {
-    float: left;
-    font-size: 12px;
-    margin-left: 5px;
-    margin-top: 2px;
-    padding: 5px 10px;
-    text-transform: uppercase;
+  ul.connections-list {
+    padding: 0;
 
-    span.day {
+    > li {
       display: block;
-      font-size: 20px;
-      font-weight: bold;
-      margin-top: -8px;
-    }
-  }
-  .memo {
-    border: none;
-    color: #6b8b9f;
-    float: left;
-    font-family: 'Titillium Web', sans-serif;
-    font-size: 14px;
-    margin-bottom: 10px;
-    margin-top: -5px;
-    width: 50%;
-    padding: 0px 10px;
+      float: left;
+      list-style-type: none;
+      margin: 10px 20px;
+      width: 340px;
 
-    &:focus {
-      outline: none;
-    }
-  }
-  .name {
-    border: none;
-    color: #394248;
-    float: left;
-    font-family: 'Titillium Web', sans-serif;
-    font-size: 18px;
-    width: 50%;
-    padding: 5px 10px;
+      @media (max-width: 600px) {
+        margin-left: 0;
+        margin-right: 0;
+      }
 
-    &:focus {
-      outline: none;
-    }
-  }
-  .pending {
-    background: #F0F0F0;
-    border-radius: 2px;
-    color: black;
-    display: inline-block;
-    float: right;
-    font-size: 12px;
-    padding: 0 5px;
-    position: absolute;
-    top: 40px;
-    right: 10px;
-    vertical-align: 3px;
-    text-transform: uppercase;
-  }
-  .removal-requested {
-    background: rgba(255, 255, 255, .7);
-    box-sizing: border-box;
-    min-height: 52px;
-    position: absolute;
-    text-align: center;
-    width: 100%;
+      span.title {
+        color: #0e6798;
+        font-weight: bold;
+      }
+      small.last-updated {
+        color: grey;
+        font-weight: bold;
+        margin-left: 10px;
+      }
 
-    a {
-      color: red;
-      margin-left: 5px;
-    }
-  }
-  .just-saved {
-    color: #3C763D;
-    font-size: 16px;
-    font-style: italic;
-    font-weight: bold;
-    position: absolute;
-    right: 100px;
-    top: 11px;
-  }
-}
+      button {
+        margin-left: 20px;
+      }
+      > ul {
+        max-width: 400px;
+        padding: 0;
 
-ul.connections-list {
-  padding: 0;
+        li {
+          margin: 0;
+          list-style-type: none;
+          position: relative;
 
-  > li {
-    display: block;
-    float: left;
-    list-style-type: none;
-    margin: 10px 20px;
-    width: 340px;
-
-    @media (max-width: 600px) {
-      margin-left: 0;
-      margin-right: 0;
-    }
-
-    span.title {
-      color: #0e6798;
-      font-weight: bold;
-    }
-    small.last-updated {
-      color: grey;
-      font-weight: bold;
-      margin-left: 10px;
-    }
-
-    button {
-      margin-left: 20px;
-    }
-    > ul {
-      max-width: 400px;
-      padding: 0;
-
-      li {
-        margin: 0;
-        list-style-type: none;
-        position: relative;
-
-        span.type {
-          bottom: 12px;
-          color: #808080;
-          font-size: 11px;
-          text-transform: uppercase;
-          position: absolute;
-          right: 10px;
-        }
-        a {
-          background: #f0eada;
-          border-radius: 5px;
-          color: #272E32;
-          display: block;
-          font-weight: bold;
-          margin: 10px 0;
-          min-height: 47px;
-          padding: 10px 20px;
-          text-decoration: none;
-
-          small {
-            color: #54BF98;
+          span.type {
+            bottom: 12px;
+            color: #808080;
+            font-size: 11px;
+            text-transform: uppercase;
             position: absolute;
             right: 10px;
-            top: 11px;
-
-            &.loan, &.credit {
-              color: #E96E57;
-            }
-            &.last-trans {
-              color: grey;
-              display: block;
-              float: none;
-              font-size: 13px;
-              position: static;
-            }
           }
-          &:hover {
-            background: #e8e3d3;
+          a {
+            background: #f0eada;
+            border-radius: 5px;
+            color: #272E32;
+            display: block;
+            font-weight: bold;
+            margin: 10px 0;
+            min-height: 47px;
+            padding: 10px 20px;
+            text-decoration: none;
+
+            small {
+              color: #54BF98;
+              position: absolute;
+              right: 10px;
+              top: 11px;
+
+              &.loan, &.credit {
+                color: #E96E57;
+              }
+              &.last-trans {
+                color: grey;
+                display: block;
+                float: none;
+                font-size: 13px;
+                position: static;
+              }
+            }
+            &:hover {
+              background: #e8e3d3;
+            }
           }
         }
       }
     }
+
   }
 
-}
+  form.add-pending-transaction {
+    background: #EDEAE4;
+    border: 1px solid #e0ddd7;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 20px;
+    position: relative;
 
-form.add-pending-transaction {
-  background: #EDEAE4;
-  border: 1px solid #e0ddd7;
-  border-radius: 5px;
-  margin-bottom: 20px;
-  padding: 20px;
-  position: relative;
+    > div {
+      margin: 10px 0;
 
-  > div {
-    margin: 10px 0;
+      input {
+        border: 1px solid #e0ddd7;
+        border-radius: 5px;
+        box-sizing: border-box;
+        display: block;
+        font-size: 16px;
+        margin-top: 5px;
+        padding: 7px 10px;
+        width: 100%;
+      }
 
-    input {
-      border: 1px solid #e0ddd7;
-      border-radius: 5px;
-      box-sizing: border-box;
-      display: block;
-      font-size: 16px;
-      margin-top: 5px;
-      padding: 7px 10px;
-      width: 100%;
+      select {
+        display: block;
+        font-size: large;
+        margin-top: 5px;
+        width: 125px;
+      }
+
+      &.typ {
+        margin-bottom: 0;
+      }
     }
+    div.submit {
+      margin: 0;
 
-    select {
-      display: block;
-      font-size: large;
-      margin-top: 5px;
-      width: 125px;
-    }
-
-    &.typ {
-      margin-bottom: 0;
+      button {
+        border: none;
+        border-radius: 5px;
+        bottom: 20px;
+        font-size: 16px;
+        position: absolute;
+        padding: 10px 50px;
+        right: 20px;
+        text-transform: uppercase;
+      }
     }
   }
-  div.submit {
-    margin: 0;
 
-    button {
+  div#account-name {
+    position: relative;
+
+    .name {
+      background: transparent;
       border: none;
-      border-radius: 5px;
-      bottom: 20px;
+      color: white;
+      font-family: 'Titillium Web', sans-serif;
+      font-size: 18px;
+      padding: 0 10px;
+      text-align: center;
+      width: 90%;
+
+      &:focus {
+        outline: none;
+      }
+    }
+    span.just-saved {
+      color: #3C763D;
       font-size: 16px;
+      font-style: italic;
+      font-weight: bold;
       position: absolute;
-      padding: 10px 50px;
-      right: 20px;
-      text-transform: uppercase;
+      top: 13px;
     }
-  }
-}
-
-div#account-name {
-  position: relative;
-
-  .name {
-    background: transparent;
-    border: none;
-    color: white;
-    font-family: 'Titillium Web', sans-serif;
-    font-size: 18px;
-    padding: 0 10px;
-    text-align: center;
-    width: 90%;
-
-    &:focus {
-      outline: none;
-    }
-  }
-  span.just-saved {
-    color: #3C763D;
-    font-size: 16px;
-    font-style: italic;
-    font-weight: bold;
-    position: absolute;
-    top: 13px;
   }
 }
