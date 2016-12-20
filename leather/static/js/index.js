@@ -7,31 +7,35 @@ import { Provider } from 'react-redux';
 import { addAccount } from './actions/accounts';
 import { createStore } from 'redux';
 
-const store = createStore(rootReducer);
+const dashboard = document.getElementById('dashboard');
 
-window.state = store.getState; // DEBUG
+if (dashboard) {
+  const store = createStore(rootReducer);
 
-const fetchAndStore = (url, action) => {
-  request
-    .get(url)
-    .set('Accept', 'application/json')
-    .end((err, res) => {
-      const response = JSON.parse(res.text);
-      if (response.results) {
-        response.results.map((result) => {
-          store.dispatch(action(result));
-        });
-      } else {
-        store.dispatch(action(response));
-      }
-    });
-};
+  window.state = store.getState; // DEBUG
 
-fetchAndStore('/api/accounts', addAccount);
+  const fetchAndStore = (url, action) => {
+    request
+      .get(url)
+      .set('Accept', 'application/json')
+      .end((err, res) => {
+        const response = JSON.parse(res.text);
+        if (response.results) {
+          response.results.map((result) => {
+            store.dispatch(action(result));
+          });
+        } else {
+          store.dispatch(action(response));
+        }
+      });
+  };
 
-ReactDOM.render(
-  <Provider store={store}>
-    <DashboardContainer />
-  </Provider>,
-  document.getElementById('dashboard')
-);
+  fetchAndStore('/api/accounts', addAccount);
+
+  ReactDOM.render(
+    <Provider store={store}>
+      <DashboardContainer />
+    </Provider>,
+    document.getElementById('dashboard')
+  );
+}
