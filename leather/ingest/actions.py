@@ -1,9 +1,10 @@
 from annoying.functions import get_object_or_None
 from decimal import Decimal
 from django.conf import settings
-from leather.accounts.models import Account, PlaidAccount
-from leather.accounts.models import Transaction
-from leather.forecasting.models import ScheduledTransaction
+from leather.accounts.models import (Account,
+                                     PlaidAccount,
+                                     ScheduledTransaction,
+                                     Transaction)
 from plaid import Client
 from stringscore import liquidmetal
 

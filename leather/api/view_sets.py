@@ -1,12 +1,14 @@
 from django.contrib.auth.models import User
-from leather.accounts.models import Account, PlaidAccount, Transaction
+from leather.accounts.models import (Account,
+                                     PlaidAccount,
+                                     ScheduledTransaction,
+                                     Transaction)
 from leather.api.serializers import (AccountSerializer,
                                      PlaidAccountSerializer,
                                      ProfileSerializer,
                                      ScheduledTransactionSerializer,
                                      TransactionSerializer,
                                      UserSerializer)
-from leather.forecasting.models import ScheduledTransaction
 from leather.users.models import Profile
 from rest_framework import viewsets
 from rest_framework.filters import OrderingFilter

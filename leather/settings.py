@@ -90,7 +90,6 @@ INSTALLED_APPS = (
     'leather.accounts',
     'leather.base',
     'leather.dashboard',
-    'leather.forecasting',
     'leather.homepage',
     'leather.ingest',
     'leather.users',

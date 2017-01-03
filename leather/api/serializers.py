@@ -1,6 +1,8 @@
 from django.contrib.auth.models import User
-from leather.accounts.models import Account, PlaidAccount, Transaction
-from leather.forecasting.models import ScheduledTransaction
+from leather.accounts.models import (Account,
+                                     PlaidAccount,
+                                     ScheduledTransaction,
+                                     Transaction)
 from leather.users.models import Profile
 from rest_framework import serializers
 

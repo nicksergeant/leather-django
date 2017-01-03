@@ -13,7 +13,6 @@ urlpatterns = [
 
     url(r'^', include('leather.accounts.urls')),
     url(r'^', include('leather.api.urls')),
-    url(r'^', include('leather.forecasting.urls')),
     url(r'^', include('leather.ingest.urls')),
     url(r'^', include('leather.homepage.urls')),
 ]
