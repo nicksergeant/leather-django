@@ -7,8 +7,18 @@ from leather.users.models import Profile
 from rest_framework import serializers
 
 
+class TransactionSerializer(serializers.HyperlinkedModelSerializer):
+    id = serializers.ReadOnlyField()
+
+    class Meta:
+        fields = '__all__'
+        model = Transaction
+
+
 class AccountSerializer(serializers.HyperlinkedModelSerializer):
     id = serializers.ReadOnlyField()
+    transactions = TransactionSerializer(many=True,
+                                         read_only=True)
 
     class Meta:
         fields = '__all__'
@@ -33,16 +43,6 @@ class ScheduledTransactionSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         fields = '__all__'
         model = ScheduledTransaction
-
-
-class TransactionSerializer(serializers.HyperlinkedModelSerializer):
-    account = AccountSerializer()
-    id = serializers.ReadOnlyField()
-    scheduledtransaction = ScheduledTransactionSerializer()
-
-    class Meta:
-        fields = '__all__'
-        model = Transaction
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):

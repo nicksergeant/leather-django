@@ -19,7 +19,7 @@ class AccountViewSet(viewsets.ModelViewSet):
     serializer_class = AccountSerializer
 
     def get_queryset(self):
-        return Account.objects.filter(plaid_account__user=self.request.user)
+        return Account.objects.filter(user=self.request.user)
 
 
 class PlaidAccountViewSet(viewsets.ModelViewSet):
@@ -44,7 +44,7 @@ class ScheduledTransactionViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         return ScheduledTransaction.objects \
-            .filter(account__plaid_account__user=self.request.user,
+            .filter(account__user=self.request.user,
                     match=None)
 
 
@@ -61,11 +61,11 @@ class TransactionViewSet(viewsets.ModelViewSet):
         if account:
             queryset = queryset.filter(
                 account__id=account,
-                account__plaid_account__user=self.request.user
+                account__user=self.request.user
             )
         else:
             queryset = queryset.filter(
-                account__plaid_account__user=self.request.user
+                account__user=self.request.user
             )
 
         return queryset

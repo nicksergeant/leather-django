@@ -38,7 +38,7 @@ class Account(models.Model):
 
 
 class Transaction(models.Model):
-    account = models.ForeignKey(Account)
+    account = models.ForeignKey(Account, related_name='transactions')
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     awaiting_import = models.BooleanField(default=False)
     categories = JSONField(blank=True, null=True)
