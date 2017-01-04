@@ -1,11 +1,9 @@
 from annoying.functions import get_object_or_None
-from decimal import Decimal
 from django.conf import settings
 from leather.accounts.models import (Account,
                                      PlaidAccount,
                                      Transaction)
 from plaid import Client
-from stringscore import liquidmetal
 
 import json
 
@@ -75,17 +73,16 @@ def update_transactions(plaid_account, transactions):
         account = Account.objects.get(plaid_id=t['_account'])
 
         transaction = existing or \
-            Transaction(account=account, awaiting_import=True)
+            Transaction(account=account)
 
         transaction.amount = t['amount']
-        transaction.categories = t.get('category', [])
-        transaction.category_id = t.get('category_id', None)
         transaction.date = t['date']
-        transaction.meta = t['meta']
         transaction.name = t['name']
+        transaction.plaid_categories = t.get('category', [])
+        transaction.plaid_category_id = t.get('category_id', None)
         transaction.plaid_id = t['_id']
-        transaction.raw = t
-        transaction.score = t['score']
+        transaction.plaid_meta = t['meta']
+        transaction.plaid_score = t['score']
         transaction.typ = t['type']
 
         transaction = auto_rename_transaction(transaction)

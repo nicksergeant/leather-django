@@ -41,7 +41,6 @@ def plaid_account_link(request):
         else:
             plaid_account.public_token = public_token
             plaid_account.user = request.user
-            plaid_account.raw = response
             plaid_account.save()
 
         from_date = (datetime.now() - timedelta(days=15)) \

@@ -1,14 +1,11 @@
-from decimal import Decimal
 from django.contrib.auth.models import User
 from django.contrib.postgres.fields import JSONField
-from django.core.validators import MinValueValidator
 from django.db import models
 
 
 class PlaidAccount(models.Model):
     access_token = models.CharField(max_length=200)
     public_token = models.CharField(max_length=200, blank=True, null=True)
-    raw = JSONField(blank=True, null=True)
     user = models.ForeignKey(User, blank=True, null=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
@@ -21,12 +18,9 @@ class PlaidAccount(models.Model):
 
 class Account(models.Model):
     custom_name = models.CharField(max_length=255, blank=True, null=True)
-    institution_type = models.CharField(max_length=50, blank=True, null=True)
-    meta = JSONField(blank=True, null=True)
     name = models.CharField(max_length=255)
     plaid_account = models.ForeignKey(PlaidAccount, blank=True, null=True)
     plaid_id = models.CharField(max_length=50, blank=True, null=True)
-    raw = JSONField(blank=True, null=True)
     typ = models.CharField(max_length=50, blank=True, null=True)
     user = models.ForeignKey(User, blank=True, null=True)
 
@@ -40,18 +34,16 @@ class Account(models.Model):
 class Transaction(models.Model):
     account = models.ForeignKey(Account, related_name='transactions')
     amount = models.DecimalField(max_digits=10, decimal_places=2)
-    awaiting_import = models.BooleanField(default=False)
-    categories = JSONField(blank=True, null=True)
-    category_id = models.CharField(max_length=50, blank=True, null=True)
     custom_name = models.CharField(max_length=255, blank=True, null=True)
     date = models.DateField()
     memo = models.CharField(max_length=255, blank=True, null=True)
-    meta = JSONField(blank=True, null=True)
     name = models.CharField(max_length=255)
     pending = models.BooleanField(default=False)
+    plaid_categories = JSONField(blank=True, null=True)
+    plaid_category_id = models.CharField(max_length=50, blank=True, null=True)
     plaid_id = models.CharField(max_length=50, blank=True, null=True)
-    raw = JSONField(blank=True, null=True)
-    score = JSONField(blank=True, null=True)
+    plaid_meta = JSONField(blank=True, null=True)
+    plaid_score = JSONField(blank=True, null=True)
     typ = JSONField(blank=True, null=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
