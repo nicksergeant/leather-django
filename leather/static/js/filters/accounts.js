@@ -1,20 +1,9 @@
 import { MONTH_NAMES_SHORT } from '../constants/dates';
 
-export function availableBalance(account, scheduledTransactions = []) {
+export function availableBalance(account) {
   if (!account) return;
 
   const toCalc = [parseFloat(account.balance_current)];
-
-  scheduledTransactions.forEach((scheduledTransaction) => {
-    let amount;
-    if (scheduledTransaction.typ === 'W') {
-      amount = -Math.abs(parseFloat(scheduledTransaction.amount));
-    } else {
-      amount = parseFloat(scheduledTransaction.amount);
-    }
-    toCalc.push(amount);
-  });
-
   const sum = toCalc.reduce((a, b) => a + b);
 
   if (sum) return sum.toFixed(2);

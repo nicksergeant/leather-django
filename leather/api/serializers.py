@@ -1,7 +1,6 @@
 from django.contrib.auth.models import User
 from leather.accounts.models import (Account,
                                      PlaidAccount,
-                                     ScheduledTransaction,
                                      Transaction)
 from leather.users.models import Profile
 from rest_framework import serializers
@@ -35,14 +34,6 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         fields = '__all__'
         model = Profile
-
-
-class ScheduledTransactionSerializer(serializers.HyperlinkedModelSerializer):
-    id = serializers.ReadOnlyField()
-
-    class Meta:
-        fields = '__all__'
-        model = ScheduledTransaction
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):

@@ -1,7 +1,6 @@
 from django.contrib import admin
 from leather.accounts.models import (Account,
                                      PlaidAccount,
-                                     ScheduledTransaction,
                                      Transaction)
 
 
@@ -19,14 +18,6 @@ class AccountAdmin(admin.ModelAdmin):
     search_fields = ['user__username']
 
 admin.site.register(Account, AccountAdmin)
-
-
-class ScheduledTransactionAdmin(admin.ModelAdmin):
-    list_display = ('name', 'account', 'date', 'amount',)
-    list_display_links = ('name',)
-    list_filter = ('date', 'created_at',)
-
-admin.site.register(ScheduledTransaction, ScheduledTransactionAdmin)
 
 
 class TransactionAdmin(admin.ModelAdmin):

@@ -3,7 +3,6 @@ from decimal import Decimal
 from django.conf import settings
 from leather.accounts.models import (Account,
                                      PlaidAccount,
-                                     ScheduledTransaction,
                                      Transaction)
 from plaid import Client
 from stringscore import liquidmetal
@@ -23,38 +22,6 @@ def auto_rename_transaction(transaction):
         transaction.memo = last_similar_transaction.memo
 
     return transaction
-
-
-def match_transactions(transaction, scheduled_transaction):
-    scheduled_transaction.match = transaction
-
-    transaction.custom_name = scheduled_transaction.name
-    transaction.memo = scheduled_transaction.memo
-
-    scheduled_transaction.save()
-    transaction.save()
-
-
-def transactions_do_match(transaction, scheduled_transaction):
-    amount = scheduled_transaction.amount
-    variance = amount * Decimal(.10)
-
-    lower_bound = amount - variance
-    upper_bound = amount + variance
-
-    if transaction.amount >= lower_bound and transaction.amount <= upper_bound:
-        left_similarity = liquidmetal.score(
-            scheduled_transaction.name,
-            transaction.name
-        )
-        right_similarity = liquidmetal.score(
-            transaction.name,
-            scheduled_transaction.name
-        )
-        if left_similarity > .90 or right_similarity > .90:
-            return True
-
-    return False
 
 
 def update_or_create_accounts(plaid_account, accounts):
@@ -124,17 +91,3 @@ def update_transactions(plaid_account, transactions):
         transaction = auto_rename_transaction(transaction)
 
         transaction.save()
-
-        if not existing:
-            scheduled_transactions = ScheduledTransaction.objects.filter(
-                account=account,
-                match=None
-            )
-
-            for scheduled_transaction in scheduled_transactions:
-                match = transactions_do_match(
-                    transaction,
-                    scheduled_transaction
-                )
-                if (match):
-                    match_transactions(transaction, scheduled_transaction)

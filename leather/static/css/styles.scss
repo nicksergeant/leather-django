@@ -137,11 +137,6 @@ body.dashboard {
     padding: 0;
     width: 60%;
 
-    &.-scheduled {
-      padding-right: 2%;
-      width: 38%;
-    }
-
     li {
       list-style-type: none;
       margin: 0;
@@ -311,19 +306,6 @@ body.dashboard {
       right: 10px;
       vertical-align: 3px;
       text-transform: uppercase;
-    }
-    .removal-requested {
-      background: rgba(255, 255, 255, .7);
-      box-sizing: border-box;
-      min-height: 52px;
-      position: absolute;
-      text-align: center;
-      width: 100%;
-
-      a {
-        color: red;
-        margin-left: 5px;
-      }
     }
     .just-saved {
       color: #3C763D;

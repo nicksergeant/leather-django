@@ -1,12 +1,10 @@
 from django.contrib.auth.models import User
 from leather.accounts.models import (Account,
                                      PlaidAccount,
-                                     ScheduledTransaction,
                                      Transaction)
 from leather.api.serializers import (AccountSerializer,
                                      PlaidAccountSerializer,
                                      ProfileSerializer,
-                                     ScheduledTransactionSerializer,
                                      TransactionSerializer,
                                      UserSerializer)
 from leather.users.models import Profile
@@ -36,16 +34,6 @@ class ProfileViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         return Profile.objects.filter(user=self.request.user)
-
-
-class ScheduledTransactionViewSet(viewsets.ModelViewSet):
-    queryset = ScheduledTransaction.objects.all()
-    serializer_class = ScheduledTransactionSerializer
-
-    def get_queryset(self):
-        return ScheduledTransaction.objects \
-            .filter(account__user=self.request.user,
-                    match=None)
 
 
 class TransactionViewSet(viewsets.ModelViewSet):

@@ -19,7 +19,6 @@ class AllTransactionsContainer extends Component {
         </header>
         <div className="account-top">All Transactions</div>
         <div className="cont">
-          <ul className="transactions -scheduled" />
           <TransactionsContainer showAccount />
         </div>
       </div>

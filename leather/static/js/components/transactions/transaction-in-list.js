@@ -13,26 +13,6 @@ class TransactionInList extends Component {
       isPending = <span className="pending">pending</span>;
     }
 
-    let removalRequested;
-    if (transaction.removal_requested) {
-      removalRequested = (
-        <div className="removal-requested">
-          Removal requested by bank.
-          <a href={`/transactions/${transaction.id}/delete/`}>Delete &raquo;</a>
-        </div>
-      );
-    }
-
-    let scheduledTransaction;
-    if (transaction.scheduledtransaction) {
-      scheduledTransaction = (
-        <span className="matched">
-          Matched: {transaction.scheduledtransaction.name}, {transaction.scheduledtransaction.amount}
-          <a href={`/scheduled-transactions/${transaction.scheduledtransaction.id}/unmatch/`}>Unmatch</a>
-        </span>
-      );
-    }
-
     let account;
     if (this.props.showAccount) {
       const name = this.props.transaction.account.custom_name ||
@@ -57,8 +37,6 @@ class TransactionInList extends Component {
           onUpdateTransaction={this.props.onUpdateTransaction}
           transaction={transaction}
         />
-        {removalRequested}
-        {scheduledTransaction}
         <br />
         {isPending}
       </li>
