@@ -1,9 +1,7 @@
 from django.contrib.auth.models import User
 from leather.accounts.models import (Account,
-                                     PlaidAccount,
                                      Transaction)
 from leather.api.serializers import (AccountSerializer,
-                                     PlaidAccountSerializer,
                                      ProfileSerializer,
                                      TransactionSerializer,
                                      UserSerializer)
@@ -18,14 +16,6 @@ class AccountViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         return Account.objects.filter(user=self.request.user)
-
-
-class PlaidAccountViewSet(viewsets.ModelViewSet):
-    queryset = PlaidAccount.objects.all()
-    serializer_class = PlaidAccountSerializer
-
-    def get_queryset(self):
-        return PlaidAccount.objects.filter(user=self.request.user)
 
 
 class ProfileViewSet(viewsets.ModelViewSet):
