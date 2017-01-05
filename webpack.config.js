@@ -26,6 +26,14 @@ module.exports = {
         include: path.resolve('./leather/static/js'),
         exclude: /node_modules/,
         loaders: ['react-hot', 'babel?stage=1']
+      },
+      {
+        test: /\.css$/,
+        loaders: [
+          'style-loader',
+          'css-loader?modules&importLoaders=1&localIdentName=[local]_[hash:base64:5]',
+          'postcss-loader'
+        ]
       }
     ]
   },
