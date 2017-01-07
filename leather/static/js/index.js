@@ -1,4 +1,4 @@
-import DashboardContainer from './containers/dashboard-container';
+import DashboardContainer from './components/dashboard/dashboard-container';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import request from 'superagent';

@@ -1,9 +1,9 @@
 import React, { PropTypes, Component } from 'react';
 import _ from 'lodash';
 import request from 'superagent';
+import styles from './styles.css';
 
 class AccountNameForm extends Component {
-
   constructor(props) {
     super(props);
     this.state = {

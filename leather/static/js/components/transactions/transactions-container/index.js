@@ -1,6 +1,7 @@
-import * as TransactionActions from '../actions/transactions';
+import * as TransactionActions from '../../../actions/transactions';
 import React, { Component, PropTypes } from 'react';
-import TransactionList from '../components/transactions/transaction-list';
+import TransactionList from '../transaction-list';
+import styles from './styles.css';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 

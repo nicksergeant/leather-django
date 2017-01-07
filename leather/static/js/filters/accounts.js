@@ -19,9 +19,11 @@ export function transactionClass(transaction) {
 }
 
 export function transactionDay(transaction) {
+  if (!transaction.date) return null;
   return transaction.date.getDate();
 }
 
 export function transactionMonth(transaction) {
+  if (!transaction.date) return null;
   return MONTH_NAMES_SHORT[transaction.date.getMonth()];
 }

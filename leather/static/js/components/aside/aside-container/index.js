@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
+import styles from './styles.css';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 

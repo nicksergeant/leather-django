@@ -1,10 +1,11 @@
-import * as AccountActions from '../actions/accounts';
-import * as TransactionActions from '../actions/transactions';
-import * as filters from '../filters/accounts';
-import AccountNameForm from '../components/accounts/account-name-form';
+import * as AccountActions from '../../../actions/accounts';
+import * as TransactionActions from '../../../actions/transactions';
+import * as filters from '../../../filters/accounts';
+import AccountNameForm from '../account-name-form';
 import React, { Component, PropTypes } from 'react';
-import TransactionsContainer from '../containers/transactions-container';
+import TransactionsContainer from '../../transactions/transactions-container';
 import moment from 'moment';
+import styles from './styles.css';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 

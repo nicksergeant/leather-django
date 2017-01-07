@@ -1,10 +1,10 @@
-import * as filters from '../../filters/accounts';
+import * as filters from '../../../filters/accounts';
 import React, { PropTypes, Component } from 'react';
-import TransactionNameForm from './transaction-name-form';
-import TransactionMemoForm from './transaction-memo-form';
+import TransactionMemoForm from '../transaction-memo-form';
+import TransactionNameForm from '../transaction-name-form';
+import styles from './styles.css';
 
 class TransactionInList extends Component {
-
   render() {
     const transaction = this.props.transaction;
 

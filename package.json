@@ -17,7 +17,7 @@
     "url": "git+https://github.com/nicksergeant/leather.git"
   },
   "scripts": {
-    "test": "node_modules/eslint/bin/eslint.js leather/static/js && node_modules/mocha/bin/mocha --compilers js:babel/register leather/static/js/tests/**",
+    "test": "node_modules/eslint/bin/eslint.js leather/static/js && node_modules/mocha/bin/mocha --compilers js:babel/register leather/static/js/**/tests.js",
     "webpack-production": "webpack --config webpack.config.prod.js"
   },
   "dependencies": {

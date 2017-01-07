@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react';
-import TransactionInList from './transaction-in-list.js';
+import TransactionInList from '../transaction-in-list';
+import styles from './styles.css';
 
 class TransactionList extends Component {
   render() {

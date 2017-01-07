@@ -1,8 +1,8 @@
-import AsideContainer from './aside-container';
+import AsideContainer from '../../aside/aside-container';
 import React, { Component, PropTypes } from 'react';
+import styles from './styles.css';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import styles from './dashboard-container.css';
 
 class DashboardContainer extends Component {
   render() {

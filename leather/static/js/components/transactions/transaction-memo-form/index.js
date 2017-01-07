@@ -1,8 +1,8 @@
 import React, { PropTypes, Component } from 'react';
 import request from 'superagent';
+import styles from './styles.css';
 
 class TransactionMemoForm extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
