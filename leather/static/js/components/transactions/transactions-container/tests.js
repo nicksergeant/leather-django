@@ -17,7 +17,7 @@ describe('TransactionsContainer Component', () => {
 
   it('renders properly', () => {
     const comp = shallow(<TransactionsContainer store={store} />);
-    expect(comp.props.children).to.eql();
+    expect(comp.props.children).to.not.exist;
     expect(comp.props.store).to.exist;
   });
 });

@@ -17,7 +17,7 @@ describe('DashboardContainer Component', () => {
 
   it('renders properly', () => {
     const comp = shallow(<DashboardContainer store={store} />);
-    expect(comp.props.children).to.eql();
+    expect(comp.props.children).to.not.exist;
     expect(comp.props.store).to.exist;
   });
 });
