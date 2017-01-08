@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import request from 'superagent';
 import rootReducer from './reducers/root';
+import styles from './styles.css';
 import { Provider } from 'react-redux';
 import { addAccount } from './actions/accounts';
 import { createStore } from 'redux';
