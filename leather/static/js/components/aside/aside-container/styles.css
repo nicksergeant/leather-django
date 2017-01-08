@@ -1,0 +1,51 @@
+.root {
+  background: #F2F2F2;
+  font-size: 14px;
+  height: 100%;
+  left: 0;
+  line-height: 26px;
+  position: fixed;
+  top: 0;
+  width: 230px;
+
+  button {
+    background: #23AEEC;
+    border: 0;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    margin: 20px 0;
+    padding: 10px !important;
+    text-transform: uppercase;
+
+    &:hover {
+      background: #23AEEC - 20;
+    }
+  }
+
+  .inner {
+    padding: 20px;
+  }
+
+  .logo {
+    background: rgba(#F8F5EE, .5);
+    border-bottom: 5px solid #eee6d4;
+    color: #394248;
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 40px;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    img {
+      margin-right: 0px;
+      vertical-align: middle;
+      width: 40px;
+    }
+  }
+
+  .profileLinks {
+    margin-top: 10px;
+  }
+}
