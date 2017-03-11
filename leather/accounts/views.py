@@ -35,8 +35,7 @@ def plaid_account_link(request):
         if not plaid_account:
             plaid_account = PlaidAccount(access_token=access_token,
                                          public_token=public_token,
-                                         user=request.user,
-                                         raw=response)
+                                         user=request.user)
             plaid_account.save()
         else:
             plaid_account.public_token = public_token

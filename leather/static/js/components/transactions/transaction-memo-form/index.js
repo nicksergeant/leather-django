@@ -29,7 +29,7 @@ class TransactionMemoForm extends Component {
       request
         .patch(this.props.transaction.url)
         .send({ memo: this.state.memo })
-        .set('X-CSRFToken', window.csrf_token)
+        .set('X-CSRFToken', window.LeatherGlobals.csrfToken)
         .set('Accept', 'application/json')
         .end((err, res) => {
           this.setState({ justSaved: true });

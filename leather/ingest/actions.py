@@ -33,6 +33,10 @@ def update_or_create_accounts(plaid_account, accounts):
                               user=plaid_account.user)
             account.save()
 
+        else:
+            account.user = plaid_account.user
+            account.save()
+
 
 def update_plaid_account(access_token, from_date=None):
     if settings.DEBUG:

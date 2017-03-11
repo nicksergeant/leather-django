@@ -35,7 +35,7 @@ class TransactionNameForm extends Component {
       request
         .patch(this.props.transaction.url)
         .send({ custom_name: this.state.customName })
-        .set('X-CSRFToken', window.csrf_token)
+        .set('X-CSRFToken', window.LeatherGlobals.csrfToken)
         .set('Accept', 'application/json')
         .end((err, res) => {
           this.setState({ justSaved: true });

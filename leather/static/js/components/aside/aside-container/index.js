@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
+import request from 'superagent';
 import styles from './styles.css';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -22,28 +23,18 @@ class AsideContainer extends Component {
       env: env,
       key: 'db7f49f5182576046eb4620403f497',
       longtail: true,
-      product: 'connect',
+      product: ['connect'],
       webhook: webhook,
-      onLoad: function() {
-        console.log('on load');
-        // The Link module finished loading.
-      },
       onSuccess: function(public_token, metadata) {
-        console.log('on success');
-        // Send the public_token to your app server here.
-        // The metadata object contains info about the institution the
-        // user selected and the account ID, if selectAccount is enabled.
-        //
-        // /plaid-accounts/link/
+        request
+          .post('/plaid-accounts/link/')
+          .type('form')
+          .send({ public_token: public_token })
+          .set('X-CSRFToken', window.LeatherGlobals.csrfToken)
+          .end();
       },
       onExit: function(err, metadata) {
-        // The user exited the Link flow.
-        if (err != null) {
-          // The user encountered a Plaid API error prior to exiting.
-        }
-        // metadata contains information about the institution
-        // that the user selected and the most recent API request IDs.
-        // Storing this information can be helpful for support.
+        if (err) throw err;
       }
     });
 
