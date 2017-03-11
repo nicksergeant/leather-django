@@ -34,7 +34,7 @@ class AsideContainer extends Component {
           .end();
       },
       onExit: function(err, metadata) {
-        if (err) throw err;
+        if (err) { throw err; };
       }
     });
 
