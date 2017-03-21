@@ -2,6 +2,7 @@ DEBUG_WEBHOOK_IP=$(shell curl icanhazip.com)
 
 deploy:
 	@git push heroku
+	@heroku run python manage.py migrate
 
 run:
 	export DEBUG_WEBHOOK_IP=$(DEBUG_WEBHOOK_IP); python manage.py runserver 0.0.0.0:8000
