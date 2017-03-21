@@ -83,6 +83,7 @@ def update_transactions(plaid_account, transactions):
         transaction.amount = t['amount']
         transaction.date = t['date']
         transaction.name = t['name']
+        transaction.pending = t['pending']
         transaction.plaid_categories = t.get('category', [])
         transaction.plaid_category_id = t.get('category_id', None)
         transaction.plaid_id = t['_id']
