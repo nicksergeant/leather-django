@@ -6,16 +6,17 @@
 2. `cd leather`
 3. `workon leather`
 4. `pip install -r requirements.txt`
-5. `npm install`
-6. Install PostgreSQL somehow.
-7. `createdb leather`
-8. `createuser leather`
-9. `psql` and then:
-10. `grant all privileges on leather to leather;` (then `<Return>`)
-11. (exit psql CLI w/ `Ctrl-C`)
-12. `python manage.py migrate`
-13. `python manage.py createsuperuser`
-14. Ask Nick for a `.env` file with some local Plaid dev keys.
+5. `brew install yarn` (if necessary)
+6. `yarn`
+7. Install PostgreSQL somehow.
+8. `createdb leather`
+9. `createuser leather`
+10. `psql` and then:
+11. `grant all privileges on leather to leather;` (then `<Return>`)
+12. (exit psql CLI w/ `Ctrl-C`)
+13. `python manage.py migrate`
+14. `python manage.py createsuperuser`
+15. Ask Nick for a `.env` file with some local Plaid dev keys.
 
 Then, run the app in two separate consoles:
 
