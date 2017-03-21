@@ -2,6 +2,8 @@ from django.contrib.auth.models import User
 from django.contrib.postgres.fields import JSONField
 from django.db import models
 
+from leather.accounts.utils import slugify_uniquely
+
 
 class PlaidAccount(models.Model):
     access_token = models.CharField(max_length=200)
@@ -21,6 +23,7 @@ class Account(models.Model):
     name = models.CharField(max_length=255)
     plaid_account = models.ForeignKey(PlaidAccount, blank=True, null=True)
     plaid_id = models.CharField(max_length=50, blank=True, null=True)
+    slug = models.SlugField(max_length=255, blank=True)
     typ = models.CharField(max_length=50, blank=True, null=True)
     user = models.ForeignKey(User, blank=True, null=True)
 
@@ -29,6 +32,12 @@ class Account(models.Model):
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify_uniquely(self.custom_name or self.name,
+                                     Account,
+                                     self.user)
+        return super(Account, self).save(*args, **kwargs)
 
 
 class Transaction(models.Model):

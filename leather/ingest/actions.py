@@ -30,7 +30,8 @@ def update_or_create_accounts(plaid_account, accounts):
             account = Account(name=a['meta']['name'],
                               plaid_account=plaid_account,
                               plaid_id=a['_id'],
-                              user=plaid_account.user)
+                              user=plaid_account.user,
+                              typ=a['type'])
             account.save()
 
         else:

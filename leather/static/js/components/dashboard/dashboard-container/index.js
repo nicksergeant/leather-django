@@ -1,4 +1,5 @@
 import AsideContainer from '../../aside/aside-container';
+import AccountList from '../../accounts/account-list';
 import React, { Component, PropTypes } from 'react';
 import styles from './styles.css';
 import { bindActionCreators } from 'redux';
@@ -7,9 +8,11 @@ import { connect } from 'react-redux';
 class DashboardContainer extends Component {
   render() {
     return (
-      <section className="dashboard-container">
+      <section className={styles.root}>
         <AsideContainer />
-        <section className="main">Hi</section>
+        <section className="main">
+          <AccountList accounts={this.props.accounts} />
+        </section>
       </section>
     );
   }
