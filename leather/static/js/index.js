@@ -5,6 +5,7 @@ import request from 'superagent';
 import rootReducer from './reducers/root';
 import styles from './styles.css';
 import { Provider } from 'react-redux';
+import { Router, Route, browserHistory } from 'react-router';
 import { addAccount } from './actions/accounts';
 import { createStore } from 'redux';
 import { updateGlobals } from './actions/globals';
@@ -35,25 +36,17 @@ if (app) {
 
   store.dispatch(updateGlobals(window.LeatherGlobals));
 
-  fetchAndStore('/api/users', updateUser);
-  fetchAndStore('/api/accounts', addAccount);
+  fetchAndStore('/api/users/', updateUser);
+  fetchAndStore('/api/accounts/', addAccount);
 
-  const BasicExample = () => (
-    <Router>
-      <div>
-        <ul>
-          <li><Link to="/">Home</Link></li>
-        </ul>
-        <hr/>
-        <Route component={AppContainer} exact path="/" />
-      </div>
-    </Router>
+  const Root = () => (
+    <Provider store={store}>
+      <Router history={browserHistory}>
+        <Route component={AppContainer}  path="/(:filter)" />
+      </Router>  
+    </Provider>
   );
 
-  ReactDOM.render(
-    <Provider store={store}>
-      <AppContainer />
-    </Provider>,
-    document.getElementById('app')
+  ReactDOM.render(<Root />, document.getElementById('app')
   );
 }

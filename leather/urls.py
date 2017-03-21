@@ -12,7 +12,7 @@ urlpatterns = [
     url(r'', include('registration.backends.default.urls')),
 
     url(r'^', include('leather.accounts.urls')),
-    url(r'^', include('leather.api.urls')),
     url(r'^', include('leather.ingest.urls')),
+    url(r'^', include('leather.api.urls')),
     url(r'^', include('leather.app.urls')),
 ]
