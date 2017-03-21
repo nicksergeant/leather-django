@@ -21,7 +21,7 @@ class TransactionInList extends Component {
     }
 
     return (
-      <li className="transaction group">
+      <li className="transaction">
         {account}
         <div className={`amount ${filters.transactionClass(transaction)}`}>
           ${filters.transactionAmount(transaction)}

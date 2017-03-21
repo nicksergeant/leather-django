@@ -47,11 +47,11 @@ class AsideContainer extends Component {
     return (
       <aside className={ styles.root }>
         <a className={ styles.logo } href="/">
-          <img alt="Leather" src="/static/img/logo-avatar.png" />
+          <img alt="Leather" className={ styles.logo_img } src="/static/img/logo-avatar.png" />
           Leather
         </a>
         <div className={ styles.inner }>
-          <button ref="linkAccount">Link your bank account &raquo;</button>
+          <button className={ styles.button } ref="linkAccount">Link your bank account &raquo;</button>
           <div className={ styles.profileLinks }>
             Logged in as <strong>{this.props.user.username}</strong><br />
             <a href="/password/change">Change password</a><br />

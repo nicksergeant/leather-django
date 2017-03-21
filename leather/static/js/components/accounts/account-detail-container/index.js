@@ -26,7 +26,7 @@ class AccountDetailContainer extends Component {
           />
           <small>Updated {moment(account.updated_at).fromNow()}</small>
         </div>
-        <div className="balance-info group">
+        <div className="balance-info">
           <div className="left">
             Available: {filters.availableBalance(account)}
           </div>
