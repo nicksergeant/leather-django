@@ -88,9 +88,8 @@ INSTALLED_APPS = (
 
     'leather.apps.LeatherAppConfig',
     'leather.accounts',
+    'leather.app',
     'leather.base',
-    'leather.dashboard',
-    'leather.homepage',
     'leather.ingest',
     'leather.users',
 )

@@ -5,7 +5,7 @@ import styles from './styles.css';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-class DashboardContainer extends Component {
+class AppContainer extends Component {
   render() {
     return (
       <section className={styles.root}>
@@ -18,7 +18,7 @@ class DashboardContainer extends Component {
   }
 }
 
-DashboardContainer.propTypes = {
+AppContainer.propTypes = {
   accounts: PropTypes.array.isRequired
 };
 
@@ -35,4 +35,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(DashboardContainer);
+)(AppContainer);

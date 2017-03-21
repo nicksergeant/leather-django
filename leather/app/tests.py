@@ -3,7 +3,7 @@ from django.test.client import Client
 from django.contrib.auth.models import User
 
 
-class HomepageViewTest(TestCase):
+class AppViewTest(TestCase):
     def test_get_unauthenticated(self):
         client = Client()
         response = client.get('/')
@@ -17,5 +17,5 @@ class HomepageViewTest(TestCase):
         client.login(username='foo', password='bar')
         response = client.get('/')
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'dashboard.html')
+        self.assertTemplateUsed(response, 'app.html')
         self.assertEqual(response.context['user'].is_authenticated(), True)

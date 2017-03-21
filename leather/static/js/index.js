@@ -1,4 +1,4 @@
-import DashboardContainer from './components/dashboard/dashboard-container';
+import AppContainer from './components/app/app-container';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import request from 'superagent';
@@ -10,9 +10,9 @@ import { createStore } from 'redux';
 import { updateGlobals } from './actions/globals';
 import { updateUser } from './actions/users';
 
-const dashboard = document.getElementById('dashboard');
+const app = document.getElementById('app');
 
-if (dashboard) {
+if (app) {
   const store = createStore(rootReducer);
 
   window.state = store.getState; // DEBUG
@@ -38,10 +38,22 @@ if (dashboard) {
   fetchAndStore('/api/users', updateUser);
   fetchAndStore('/api/accounts', addAccount);
 
+  const BasicExample = () => (
+    <Router>
+      <div>
+        <ul>
+          <li><Link to="/">Home</Link></li>
+        </ul>
+        <hr/>
+        <Route component={AppContainer} exact path="/" />
+      </div>
+    </Router>
+  );
+
   ReactDOM.render(
     <Provider store={store}>
-      <DashboardContainer />
+      <AppContainer />
     </Provider>,
-    document.getElementById('dashboard')
+    document.getElementById('app')
   );
 }
