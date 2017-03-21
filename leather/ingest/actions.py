@@ -35,6 +35,7 @@ def update_or_create_accounts(plaid_account, accounts):
             account.save()
 
         else:
+            account.typ = a['type']
             account.user = plaid_account.user
             account.save()
 
