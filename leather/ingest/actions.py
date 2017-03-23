@@ -94,4 +94,13 @@ def update_transactions(plaid_account, transactions):
 
         transaction = auto_rename_transaction(transaction)
 
+        if '_pendingTransaction' in t:
+            pending_transaction = get_object_or_None(
+                Transaction,
+                plaid_id=t['_pendingTransaction'],
+                account__plaid_account=plaid_account)
+
+            if pending_transaction:
+                transaction.pending_transaction = pending_transaction
+
         transaction.save()

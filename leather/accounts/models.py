@@ -48,6 +48,9 @@ class Transaction(models.Model):
     memo = models.CharField(max_length=255, blank=True, null=True)
     name = models.CharField(max_length=255)
     pending = models.BooleanField(default=False)
+    pending_transaction = models.ForeignKey("Transaction",
+                                            blank=True,
+                                            null=True)
     plaid_categories = JSONField(blank=True, null=True)
     plaid_category_id = models.CharField(max_length=50, blank=True, null=True)
     plaid_id = models.CharField(max_length=50, blank=True, null=True)
