@@ -6,7 +6,7 @@ class AccountList extends Component {
   render() {
     return (
       <div>
-        <ul className={styles.root}>
+        <ul>
           <h4>Accounts:</h4>
           {this.props.accounts.map((account) => {
             return (

@@ -60,18 +60,17 @@ class AsideContainer extends Component {
     }
 
     return (
-      <aside className={styles.root}>
-        <Link className={styles.logo} to="/">
-          <img alt="Leather" className={styles.logo_img} src="/static/img/logo-avatar.png" />
+      <aside>
+        <Link>
+          <img alt="Leather" src="/static/img/logo-avatar.png" />
           Leather
         </Link>
-        <div className={styles.inner}>
-          <ul className={styles.accountList}>
+        <div>
+          <ul>
             {this.props.accounts.map((account) => {
               return (
                 <div key={account.id}>
                   <Link
-                    className={styles.accountLink + ' ' + this.isActive(account.slug, this.props.accountSlug)}
                     to={'/accounts/' + account.slug}>
                     {account.name}
                   </Link>
@@ -79,8 +78,8 @@ class AsideContainer extends Component {
               );
             })}
           </ul>
-          <button className={styles.button} ref="linkAccount">Link your bank account &raquo;</button>
-          <div className={styles.profileLinks}>
+          <button ref="linkAccount">Link your bank account &raquo;</button>
+          <div>
             Logged in as <strong>{this.props.user.username}</strong><br />
             <a href="/password/change">Change password</a><br />
             <a href="/logout">Logout</a>

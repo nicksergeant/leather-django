@@ -8,9 +8,9 @@ import { connect } from 'react-redux';
 class HomeContainer extends Component {
   render() {
     return (
-      <section className={styles.root}>
+      <section>
         <AsideContainer accountSlug={this.props.params.accountSlug} />
-        <section className={styles.main}>
+        <section>
           <AccountList accounts={this.props.accounts} />
         </section>
       </section>

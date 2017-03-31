@@ -30,9 +30,9 @@ class AccountDetailContainer extends Component {
     });
 
     return (
-      <section className={styles.root}>
+      <section>
         <AsideContainer accountSlug={this.props.params.accountSlug} />
-        <section className={styles.main}>
+        <section>
           <div className="account-top">
             <AccountNameForm
               account={account}
