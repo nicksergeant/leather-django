@@ -1,5 +1,5 @@
 import AccountDetailContainer from './components/accounts/account-detail-container';
-import AppContainer from './components/app/app-container';
+import HomeContainer from './components/home/home-container';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import request from 'superagent';
@@ -50,7 +50,7 @@ if (app) {
   const Root = () => (
     <Provider store={store}>
       <Router history={browserHistory}>
-        <Route component={AppContainer}  path="/" />
+        <Route component={HomeContainer}  path="/" />
         <Route component={AccountDetailContainer}  path="/accounts/(:accountSlug)" />
       </Router>  
     </Provider>

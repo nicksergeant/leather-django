@@ -11,6 +11,10 @@ class TransactionNameForm extends Component {
     };
   }
 
+  componentWillReceiveProps(props) {
+    this.setState({ customName: props.transaction.custom_name || props.transaction.name });
+  }
+
   handleKeyDown(event) {
     if (event.keyCode === 13) {
       event.preventDefault();

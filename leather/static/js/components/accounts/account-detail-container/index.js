@@ -1,6 +1,7 @@
 import * as AccountActions from '../../../actions/accounts';
 import * as filters from '../../../filters/accounts';
 import AccountNameForm from '../account-name-form';
+import AsideContainer from '../../aside/aside-container';
 import React, { Component, PropTypes } from 'react';
 import TransactionsContainer from '../../transactions/transactions-container';
 import moment from 'moment';
@@ -14,12 +15,14 @@ class AccountDetailContainer extends Component {
       return <div />;
     }
 
-    const account = this.props.accounts.filter((ac) => {
+    let account = this.props.accounts.filter((ac) => {
       return ac.slug === this.props.params.accountSlug;
-    })[0];
+    });
 
-    if (!account) {
+    if (!account.length) {
       return <div />;
+    } else {
+      account = account[0];
     }
 
     const transactions = this.props.transactions.filter((t) => {
@@ -27,31 +30,29 @@ class AccountDetailContainer extends Component {
     });
 
     return (
-      <div>
-        <header>
-          <a href="/">
-            <img alt="" src="/static/img/logo-avatar.png" />
-          </a>
-        </header>
-        <div className="account-top">
-          <AccountNameForm
-            account={account}
-            onUpdateAccount={this.props.actions.updateAccount}
-          />
-          <small>Updated {moment(account.updated_at).fromNow()}</small>
-        </div>
-        <div className="balance-info">
-          <div className="left">
-            Available: {filters.availableBalance(account)}
+      <section className={styles.root}>
+        <AsideContainer accountSlug={this.props.params.accountSlug} />
+        <section className={styles.main}>
+          <div className="account-top">
+            <AccountNameForm
+              account={account}
+              onUpdateAccount={this.props.actions.updateAccount}
+            />
+            <small>Updated {moment(account.updated_at).fromNow()}</small>
           </div>
-          <div className="right">
-            Balance: {account.balance_current}
+          <div className="balance-info">
+            <div className="left">
+              Available: {filters.availableBalance(account)}
+            </div>
+            <div className="right">
+              Balance: {account.balance_current}
+            </div>
           </div>
-        </div>
-        <div className="cont">
-          <TransactionsContainer showAccount={false} transactions={transactions} />
-        </div>
-      </div>
+          <div className="cont">
+            <TransactionsContainer showAccount={false} transactions={transactions} />
+          </div>
+        </section>
+      </section>
     );
   }
 }

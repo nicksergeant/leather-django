@@ -11,6 +11,10 @@ class AccountNameForm extends Component {
     };
   }
 
+  componentWillReceiveProps(props) {
+    this.setState({ customName: props.account.custom_name || props.account.name });
+  }
+
   handleKeyDown(event) {
     if (event.keyCode === 13) {
       event.preventDefault();

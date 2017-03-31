@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import request from 'superagent';
 import styles from './styles.css';
+import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -43,14 +44,41 @@ class AsideContainer extends Component {
     };
   }
 
+  isActive(slug, active) {
+    if (slug === active) {
+      return styles.accountLinkActive;
+    }
+    return '';
+  };
+
   render() {
+    let account;
+    if (this.props.accounts.length) {
+      account = this.props.accounts.filter((ac) => {
+        return ac.slug === this.props.accountSlug;
+      })[0];
+    }
+
     return (
       <aside className={styles.root}>
-        <a className={styles.logo} href="/">
+        <Link className={styles.logo} to="/">
           <img alt="Leather" className={styles.logo_img} src="/static/img/logo-avatar.png" />
           Leather
-        </a>
+        </Link>
         <div className={styles.inner}>
+          <ul className={styles.accountList}>
+            {this.props.accounts.map((account) => {
+              return (
+                <div key={account.id}>
+                  <Link
+                    className={styles.accountLink + ' ' + this.isActive(account.slug, this.props.accountSlug)}
+                    to={'/accounts/' + account.slug}>
+                    {account.name}
+                  </Link>
+                </div>
+              );
+            })}
+          </ul>
           <button className={styles.button} ref="linkAccount">Link your bank account &raquo;</button>
           <div className={styles.profileLinks}>
             Logged in as <strong>{this.props.user.username}</strong><br />

@@ -1,16 +1,16 @@
-import AsideContainer from '../../aside/aside-container';
 import AccountList from '../../accounts/account-list';
+import AsideContainer from '../../aside/aside-container';
 import React, { Component, PropTypes } from 'react';
 import styles from './styles.css';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-class AppContainer extends Component {
+class HomeContainer extends Component {
   render() {
     return (
       <section className={styles.root}>
-        <AsideContainer />
-        <section className="main">
+        <AsideContainer accountSlug={this.props.params.accountSlug} />
+        <section className={styles.main}>
           <AccountList accounts={this.props.accounts} />
         </section>
       </section>
@@ -18,7 +18,7 @@ class AppContainer extends Component {
   }
 }
 
-AppContainer.propTypes = {
+HomeContainer.propTypes = {
   accounts: PropTypes.array.isRequired
 };
 
@@ -35,4 +35,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(AppContainer);
+)(HomeContainer);

@@ -10,6 +10,10 @@ class TransactionMemoForm extends Component {
     };
   }
 
+  componentWillReceiveProps(props) {
+    this.setState({ customName: props.transaction.memo || '' });
+  }
+
   handleKeyDown(event) {
     if (event.keyCode === 13) {
       event.preventDefault();

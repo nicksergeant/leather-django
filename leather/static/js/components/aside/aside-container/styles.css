@@ -49,3 +49,23 @@
 .profileLinks {
   margin-top: 10px;
 }
+
+.accountList {
+  margin: 0;
+  padding: 0;
+}
+
+.accountLink {
+  color: black;
+  display: block;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.accountLink:hover {
+  color: #595959;
+}
+
+.accountLinkActive {
+  color: #02ADEF !important;
+}
