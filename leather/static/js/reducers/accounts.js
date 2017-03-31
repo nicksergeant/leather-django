@@ -4,7 +4,6 @@ const initialState = [];
 
 export default function accounts(state = initialState, action) {
   switch (action.type) {
-
     case ADD_ACCOUNT:
       return [
         ...state,

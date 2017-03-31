@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import styles from './styles.css';
+import { Link } from 'react-router';
 
 class AccountList extends Component {
   render() {
@@ -10,7 +11,9 @@ class AccountList extends Component {
           {this.props.accounts.map((account) => {
             return (
               <div key={account.id}>
-                <a href={account.slug}>{account.name}</a>
+                <Link to={'/accounts/' + account.slug}>
+                  {account.name}
+                </Link>
               </div>
             );
           })}

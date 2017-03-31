@@ -1,5 +1,4 @@
 import * as AccountActions from '../../../actions/accounts';
-import * as TransactionActions from '../../../actions/transactions';
 import * as filters from '../../../filters/accounts';
 import AccountNameForm from '../account-name-form';
 import React, { Component, PropTypes } from 'react';
@@ -11,7 +10,22 @@ import { connect } from 'react-redux';
 
 class AccountDetailContainer extends Component {
   render() {
-    const { account, actions } = this.props;
+    if (!this.props.accounts.length || !this.props.transactions.length) {
+      return <div />;
+    }
+
+    const account = this.props.accounts.filter((ac) => {
+      return ac.slug === this.props.params.accountSlug;
+    })[0];
+
+    if (!account) {
+      return <div />;
+    }
+
+    const transactions = this.props.transactions.filter((t) => {
+      return t.account_id === account.id;
+    });
+
     return (
       <div>
         <header>
@@ -22,7 +36,7 @@ class AccountDetailContainer extends Component {
         <div className="account-top">
           <AccountNameForm
             account={account}
-            onUpdateAccount={actions.updateAccount}
+            onUpdateAccount={this.props.actions.updateAccount}
           />
           <small>Updated {moment(account.updated_at).fromNow()}</small>
         </div>
@@ -35,7 +49,7 @@ class AccountDetailContainer extends Component {
           </div>
         </div>
         <div className="cont">
-          <TransactionsContainer showAccount={false} />
+          <TransactionsContainer showAccount={false} transactions={transactions} />
         </div>
       </div>
     );
@@ -47,7 +61,10 @@ AccountDetailContainer.propTypes = {
 };
 
 function mapStateToProps(state) {
-  return {};
+  return {
+    accounts: state.accounts,
+    transactions: state.transactions
+  };
 }
 
 function mapDispatchToProps(dispatch) {

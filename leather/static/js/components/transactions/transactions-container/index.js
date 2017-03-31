@@ -25,9 +25,7 @@ TransactionsContainer.propTypes = {
 };
 
 function mapStateToProps(state) {
-  return {
-    transactions: state.transactions
-  };
+  return {};
 }
 
 function mapDispatchToProps(dispatch) {

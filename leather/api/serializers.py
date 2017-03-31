@@ -6,30 +6,58 @@ from rest_framework import serializers
 
 
 class TransactionSerializer(serializers.HyperlinkedModelSerializer):
-    id = serializers.ReadOnlyField()
-
     class Meta:
-        fields = '__all__'
+        fields = (
+            'account_id',
+            'amount',
+            'custom_name',
+            'date',
+            'id',
+            'memo',
+            'name',
+            'pending',
+            'pending_transaction',
+            'url',
+        )
+
         model = Transaction
 
 
 class AccountSerializer(serializers.HyperlinkedModelSerializer):
-    id = serializers.ReadOnlyField()
     transactions = TransactionSerializer(many=True,
                                          read_only=True)
 
     class Meta:
-        exclude = ('plaid_account',)
+        fields = (
+            'custom_name',
+            'id',
+            'name',
+            'slug',
+            'transactions',
+            'typ',
+            'updated_at',
+            'url',
+        )
+
         model = Account
 
 
 class ProfileSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        fields = '__all__'
+        fields = (
+            'id',
+        )
         model = Profile
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        fields = ('url', 'username', 'email', 'is_staff', 'profile')
+        fields = (
+            'email',
+            'is_staff',
+            'profile',
+            'url',
+            'username',
+        )
+
         model = User

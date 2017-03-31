@@ -6,7 +6,7 @@ class TransactionMemoForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      memo: props.transaction.memo
+      memo: props.transaction.memo || ''
     };
   }
 

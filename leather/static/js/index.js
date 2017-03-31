@@ -1,3 +1,4 @@
+import AccountDetailContainer from './components/accounts/account-detail-container';
 import AppContainer from './components/app/app-container';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -7,6 +8,7 @@ import styles from './styles.css';
 import { Provider } from 'react-redux';
 import { Router, Route, browserHistory } from 'react-router';
 import { addAccount } from './actions/accounts';
+import { addTransaction } from './actions/transactions';
 import { createStore } from 'redux';
 import { updateGlobals } from './actions/globals';
 import { updateUser } from './actions/users';
@@ -18,31 +20,38 @@ if (app) {
 
   window.state = store.getState; // DEBUG
 
-  const fetchAndStore = (url, action) => {
-    request
-      .get(url)
-      .set('Accept', 'application/json')
-      .end((err, res) => {
-        const response = JSON.parse(res.text);
-        if (response.results) {
-          response.results.map((result) => {
-            store.dispatch(action(result));
-          });
-        } else {
-          store.dispatch(action(response));
-        }
-      });
-  };
-
   store.dispatch(updateGlobals(window.LeatherGlobals));
 
-  fetchAndStore('/api/users/', updateUser);
-  fetchAndStore('/api/accounts/', addAccount);
+  request.get('/api/users/')
+    .set('Accept', 'application/json')
+    .end((err, res) => {
+      JSON.parse(res.text)
+        .results
+        .map((result) => {
+          store.dispatch(updateUser(result));
+        });
+    });
+
+  request.get('/api/accounts/')
+    .set('Accept', 'application/json')
+    .end((err, res) => {
+      JSON.parse(res.text)
+        .results
+        .map((result) => {
+          const transactions = result.transactions;
+          delete result.transactions;
+          transactions.forEach((transaction) => {
+            store.dispatch(addTransaction(transaction));
+          });
+          store.dispatch(addAccount(result));
+        });
+    });
 
   const Root = () => (
     <Provider store={store}>
       <Router history={browserHistory}>
-        <Route component={AppContainer}  path="/(:filter)" />
+        <Route component={AppContainer}  path="/" />
+        <Route component={AccountDetailContainer}  path="/accounts/(:accountSlug)" />
       </Router>  
     </Provider>
   );
