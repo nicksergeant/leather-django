@@ -14,6 +14,6 @@ describe('AccountList Component', () => {
 
   it('renders properly', () => {
     const comp = shallow(<AccountList />);
-    expect(comp.props.children.type).to.eql('ul');
+    expect(comp.props.children.type).to.eql();
   });
 });
