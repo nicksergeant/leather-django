@@ -1,0 +1,22 @@
+.root {
+  bottom: 0;
+  border-right: 1px solid #EDEDED;
+  position: fixed;
+  top: 0;
+  width: 15rem;
+}
+
+.logo {
+  border-bottom: 1px solid #EDEDED;
+  display: block;
+  padding: 1rem 0;
+  text-align: center;
+}
+
+.logoImg {
+  width: 5rem;
+}
+
+.accountLink {
+  border-left-width: .25rem !important;
+}

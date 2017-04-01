@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
+import md5 from 'md5';
 import request from 'superagent';
 import styles from './styles.css';
 import { Link } from 'react-router';
@@ -46,44 +47,69 @@ class AsideContainer extends Component {
 
   isActive(slug, active) {
     if (slug === active) {
-      return styles.accountLinkActive;
+      return 'slds-is-active';
     }
     return '';
   };
 
-  render() {
-    let account;
-    if (this.props.accounts.length) {
-      account = this.props.accounts.filter((ac) => {
-        return ac.slug === this.props.accountSlug;
-      })[0];
-    }
+  alphaSort(a, b) {
+    const aName = a.custom_name || a.name;
+    const bName = b.custom_name || b.name;
+    if (aName < bName) return -1;
+    if (aName > bName) return 1;
+    return 0;
+  };
 
+  userAvatar() {
+    if (!this.props.user.email) return;
+    const hash = md5(this.props.user.email);
+    return `https://www.gravatar.com/avatar/${hash}?s=200`;
+  };
+
+  render() {
     return (
-      <aside>
-        <Link>
-          <img alt="Leather" src="/static/img/logo-avatar.png" />
-          Leather
+      <aside className={styles.root}>
+        <Link className={styles.logo} to="/">
+          <img alt="Leather" className={styles.logoImg} src="/static/img/logo.png" />
         </Link>
-        <div>
+        <div className="slds-grid slds-grid--vertical slds-navigation-list--vertical">
+          <h2 className="slds-text-title--caps slds-p-around--medium" id="entity-header">Accounts</h2>
           <ul>
-            {this.props.accounts.map((account) => {
+            {this.props.accounts.sort(this.alphaSort).map((account) => {
               return (
-                <div key={account.id}>
+                <li className={this.isActive(account.slug, this.props.accountSlug)} key={account.id}>
                   <Link
+                    className={'slds-navigation-list--vertical__action slds-text-link--reset ' + styles.accountLink}
                     to={'/accounts/' + account.slug}>
                     {account.name}
                   </Link>
-                </div>
+                </li>
               );
             })}
+            <li className="slds-align--absolute-center slds-m-top--small">
+              <button className="slds-button slds-button--neutral" ref="linkAccount">
+                <svg aria-hidden="true" className="slds-button__icon slds-button__icon--left">
+                  <use xlinkHref="/static/slds/assets/icons/utility-sprite/svg/symbols.svg#download" />
+                </svg>
+                Link your bank account
+              </button>
+            </li>
           </ul>
-          <button ref="linkAccount">Link your bank account &raquo;</button>
-          <div>
-            Logged in as <strong>{this.props.user.username}</strong><br />
-            <a href="/password/change">Change password</a><br />
-            <a href="/logout">Logout</a>
+        </div>
+        <h2 className="slds-text-title--caps slds-p-around--medium" id="entity-header">Profile</h2>
+        <div className="slds-m-around--medium">
+          <div className="slds-tile slds-media">
+            <div className="slds-media__figure">
+              <span className="slds-avatar slds-avatar--circle slds-avatar--medium slds-m-bottom--small">
+                <img src={this.userAvatar()} />
+              </span>
+            </div>
+            <div className="slds-media__body">
+              <h3 className="slds-truncate" title={this.props.user.username}>{this.props.user.username}</h3>
+            </div>
           </div>
+          <a href="/password/change">Change password</a><br />
+          <a href="/logout">Logout</a>
         </div>
       </aside>
     );

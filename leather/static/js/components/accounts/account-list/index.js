@@ -6,25 +6,12 @@ class AccountList extends Component {
   render() {
     return (
       <div>
-        <ul>
-          <h4>Accounts:</h4>
-          {this.props.accounts.map((account) => {
-            return (
-              <div key={account.id}>
-                <Link to={'/accounts/' + account.slug}>
-                  {account.name}
-                </Link>
-              </div>
-            );
-          })}
-        </ul>
+        Pick an account from the left.
       </div>
     );
   }
 }
 
-AccountList.propTypes = {
-  accounts: PropTypes.array.isRequired
-};
+AccountList.propTypes = {};
 
 export default AccountList;

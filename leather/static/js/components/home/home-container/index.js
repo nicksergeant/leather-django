@@ -8,12 +8,12 @@ import { connect } from 'react-redux';
 class HomeContainer extends Component {
   render() {
     return (
-      <section>
+      <div>
         <AsideContainer accountSlug={this.props.params.accountSlug} />
-        <section>
-          <AccountList accounts={this.props.accounts} />
+        <section className={styles.main}>
+          <AccountList />
         </section>
-      </section>
+      </div>
     );
   }
 }

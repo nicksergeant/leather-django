@@ -4,11 +4,12 @@ import styles from './styles.css';
 
 class TransactionList extends Component {
   render() {
+    const transactions = this.props.transactions.splice(0, 20);
     return (
       <div>
         <ul className="transactions">
           <h4>Transactions:</h4>
-          {this.props.transactions.map((transaction) => {
+          {transactions.map((transaction) => {
             return (
               <TransactionInList
                 key={`transaction-${transaction.id}`}
