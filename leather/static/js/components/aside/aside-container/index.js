@@ -108,8 +108,8 @@ class AsideContainer extends Component {
               <h3 className="slds-truncate" title={this.props.user.username}>{this.props.user.username}</h3>
             </div>
           </div>
-          <a href="/password/change">Change password</a><br />
-          <a href="/logout">Logout</a>
+          <a href="/password/change/">Change password</a><br />
+          <a href="/logout/">Logout</a>
         </div>
       </aside>
     );
