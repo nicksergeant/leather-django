@@ -7,19 +7,36 @@ class TransactionList extends Component {
     const transactions = this.props.transactions.splice(0, 20);
     return (
       <div>
-        <ul className="transactions">
-          <h4>Transactions:</h4>
-          {transactions.map((transaction) => {
-            return (
-              <TransactionInList
-                key={`transaction-${transaction.id}`}
-                onUpdateTransaction={this.props.onUpdateTransaction}
-                showAccount={this.props.showAccount}
-                transaction={transaction}
-              />
-            );
-          })}
-        </ul>
+        <table className="slds-table slds-table--bordered slds-table--cell-buffer slds-table--striped">
+          <thead>
+            <tr className="slds-text-title--caps">
+              <th scope="col">
+                <div className="slds-truncate" title="Date">Date</div>
+              </th>
+              <th scope="col">
+                <div className="slds-truncate" title="Transaction">Transaction</div>
+              </th>
+              <th scope="col">
+                <div className="slds-truncate" title="Memo">Memo</div>
+              </th>
+              <th scope="col">
+                <div className="slds-truncate" title="Amount">Amount</div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {transactions.map((transaction) => {
+              return (
+                <TransactionInList
+                  key={`transaction-${transaction.id}`}
+                  onUpdateTransaction={this.props.onUpdateTransaction}
+                  showAccount={this.props.showAccount}
+                  transaction={transaction}
+                />
+              );
+            })}
+          </tbody>
+        </table>
       </div>
     );
   }

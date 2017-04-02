@@ -56,7 +56,7 @@ class TransactionMemoForm extends Component {
     return (
       <form onSubmit={this.handleSubmit.bind(this)}>
         <input
-          className="memo"
+          className={styles.input}
           onBlur={this.handleSubmit.bind(this)}
           onChange={this.handleMemoChange.bind(this)}
           onKeyDown={this.handleKeyDown.bind(this)}

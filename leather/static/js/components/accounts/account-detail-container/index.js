@@ -1,10 +1,7 @@
-import * as AccountActions from '../../../actions/accounts';
 import * as filters from '../../../filters/accounts';
-import AccountNameForm from '../account-name-form';
 import AsideContainer from '../../aside/aside-container';
 import React, { Component, PropTypes } from 'react';
 import TransactionsContainer from '../../transactions/transactions-container';
-import moment from 'moment';
 import styles from './styles.css';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -31,24 +28,7 @@ class AccountDetailContainer extends Component {
       <section>
         <AsideContainer accountSlug={this.props.params.accountSlug} />
         <section className={styles.main}>
-          <div className="account-top">
-            <AccountNameForm
-              account={account}
-              onUpdateAccount={this.props.actions.updateAccount}
-            />
-            <small>Updated {moment(account.updated_at).fromNow()}</small>
-          </div>
-          <div className="balance-info">
-            <div className="left">
-              Available: 
-            </div>
-            <div className="right">
-              Balance:
-            </div>
-          </div>
-          <div className="cont">
-            <TransactionsContainer showAccount={false} transactions={transactions} />
-          </div>
+          <TransactionsContainer showAccount={false} transactions={transactions} />
         </section>
       </section>
     );
@@ -67,9 +47,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(AccountActions, dispatch)
-  };
+  return {};
 }
 
 export default connect(

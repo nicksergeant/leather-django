@@ -8,38 +8,47 @@ class TransactionInList extends Component {
   render() {
     const transaction = this.props.transaction;
 
-    let isPending;
-    if (transaction.pending) {
-      isPending = <span className="pending">pending</span>;
-    }
-
-    let account;
-    if (this.props.showAccount) {
-      const name = this.props.transaction.account.custom_name ||
-        this.props.transaction.account.name;
-      account = <a className="account" href={`/accounts/${this.props.transaction.account.id}/`}>{name}</a>;
-    }
+    // let account;
+    // if (this.props.showAccount) {
+    //   const name = this.props.transaction.account.custom_name ||
+    //     this.props.transaction.account.name;
+    //   account = <a className="account" href={`/accounts/${this.props.transaction.account.id}/`}>{name}</a>;
+    // }
+    const amount = filters.transactionAmount(transaction);
+    const day = filters.transactionDay(transaction);
+    const month = filters.transactionMonth(transaction);
+    const name = transaction.custom_name || transaction.name;
+    const date = month + ' ' + day;
 
     return (
-      <li className="transaction">
-        {account}
-        <div className={`amount ${filters.transactionClass(transaction)}`}>
-          ${filters.transactionAmount(transaction)}
-        </div>
-        <span className="date">
-          {filters.transactionMonth(transaction)} <span className="day">{filters.transactionDay(transaction)}</span>
-        </span>
-        <TransactionNameForm
-          onUpdateTransaction={this.props.onUpdateTransaction}
-          transaction={transaction}
-        />
-        <TransactionMemoForm
-          onUpdateTransaction={this.props.onUpdateTransaction}
-          transaction={transaction}
-        />
-        <br />
-        {isPending}
-      </li>
+      <tr>
+        <td data-label="Date">
+          <div className="slds-truncate" title={date}>
+            {date}
+          </div>
+        </td>
+        <td data-label="Transaction">
+          <div className="slds-truncate" title={name}>
+            <TransactionNameForm
+              onUpdateTransaction={this.props.onUpdateTransaction}
+              transaction={transaction}
+            />
+          </div>
+        </td>
+        <td data-label="Memo">
+          <div className="slds-truncate" title={transaction.memo}>
+            <TransactionMemoForm
+              onUpdateTransaction={this.props.onUpdateTransaction}
+              transaction={transaction}
+            />
+          </div>
+        </td>
+        <td data-label="Amount">
+          <div className="slds-truncate" title={amount}>
+            {amount}
+          </div>
+        </td>
+      </tr>
     );
   }
 }

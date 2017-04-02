@@ -64,7 +64,7 @@ class TransactionNameForm extends Component {
     return (
       <form onSubmit={this.handleSubmit.bind(this)}>
         <input
-          className="name"
+          className={styles.input}
           onBlur={this.handleSubmit.bind(this)}
           onChange={this.handleNameChange.bind(this)}
           onKeyDown={this.handleKeyDown.bind(this)}
