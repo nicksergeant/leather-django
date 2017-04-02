@@ -11,9 +11,14 @@ export function balance(account, allTransactions) {
   if (!allTransactions.length) return;
 
   const transactions = accountTransactions(account, allTransactions);
+
+  if (!transactions.length) return;
+
   const amounts = transactions.map((transaction) => {
     return transaction.amount;
   });
+
+  if (!amounts.length) return;
 
   const sum = amounts.reduce((acc, val) => {
     return parseFloat(acc) + parseFloat(val);
