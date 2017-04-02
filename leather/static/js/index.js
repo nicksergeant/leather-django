@@ -8,7 +8,7 @@ import styles from './styles.css';
 import { Provider } from 'react-redux';
 import { Router, Route, browserHistory } from 'react-router';
 import { addAccount } from './actions/accounts';
-import { addTransaction } from './actions/transactions';
+import { addTransactions } from './actions/transactions';
 import { createStore } from 'redux';
 import { updateGlobals } from './actions/globals';
 import { updateUser } from './actions/users';
@@ -40,9 +40,7 @@ if (app) {
         .map((result) => {
           const transactions = result.transactions;
           delete result.transactions;
-          transactions.forEach((transaction) => {
-            store.dispatch(addTransaction(transaction));
-          });
+          store.dispatch(addTransactions(transactions));
           store.dispatch(addAccount(result));
         });
     });

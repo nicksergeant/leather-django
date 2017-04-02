@@ -20,3 +20,11 @@
 .accountLink {
   border-left-width: .25rem !important;
 }
+
+.accountName {
+  font-weight: bold;
+}
+
+.balance {
+  display: block;
+}

@@ -1,3 +1,4 @@
+import * as filters from '../../../filters/accounts';
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import md5 from 'md5';
@@ -81,7 +82,10 @@ class AsideContainer extends Component {
                   <Link
                     className={'slds-navigation-list--vertical__action slds-text-link--reset ' + styles.accountLink}
                     to={'/accounts/' + account.slug}>
-                    {account.name}
+                    <span className={styles.accountName}>{account.name}</span>
+                    <span className={styles.balance}>
+                      {filters.balance(account, this.props.transactions)}
+                    </span>
                   </Link>
                 </li>
               );
@@ -106,6 +110,7 @@ class AsideContainer extends Component {
             </div>
             <div className="slds-media__body">
               <h3 className="slds-truncate" title={this.props.user.username}>{this.props.user.username}</h3>
+              <div className="slds-item--label slds-text-color--weak slds-truncate">{this.props.user.email}</div>
             </div>
           </div>
           <a href="/password/change/">Change password</a><br />
@@ -122,7 +127,8 @@ function mapStateToProps(state) {
   return {
     accounts: state.accounts,
     globals: state.globals,
-    user: state.user
+    user: state.user,
+    transactions: state.transactions
   };
 }
 

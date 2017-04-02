@@ -25,9 +25,7 @@ class AccountDetailContainer extends Component {
       account = account[0];
     }
 
-    const transactions = this.props.transactions.filter((t) => {
-      return t.account_id === account.id;
-    });
+    const transactions = filters.accountTransactions(account, this.props.transactions);
 
     return (
       <section>
@@ -42,10 +40,10 @@ class AccountDetailContainer extends Component {
           </div>
           <div className="balance-info">
             <div className="left">
-              Available: {filters.availableBalance(account)}
+              Available: 
             </div>
             <div className="right">
-              Balance: {account.balance_current}
+              Balance:
             </div>
           </div>
           <div className="cont">

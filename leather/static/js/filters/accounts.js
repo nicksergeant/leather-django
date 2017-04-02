@@ -1,12 +1,29 @@
 import { MONTH_NAMES_SHORT } from '../constants/dates';
 
-export function availableBalance(account) {
+export function accountTransactions(account, transactions) {
+  return transactions.filter((t) => {
+    return t.account_id === account.id;
+  });
+}
+
+export function balance(account, allTransactions) {
   if (!account) return;
+  if (!allTransactions.length) return;
 
-  const toCalc = [parseFloat(account.balance_current)];
-  const sum = toCalc.reduce((a, b) => a + b);
+  const transactions = accountTransactions(account, allTransactions);
+  const amounts = transactions.map((transaction) => {
+    return transaction.amount;
+  });
 
-  if (sum) return sum.toFixed(2);
+  const sum = amounts.reduce((acc, val) => {
+    return parseFloat(acc) + parseFloat(val);
+  });
+
+  return niceNumber(Math.abs(sum).toFixed(2));
+}
+
+export function niceNumber(num) {
+    return '$' + num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
 export function transactionAmount(transaction) {
