@@ -35,9 +35,7 @@ class AccountDetailContainer extends Component {
   }
 }
 
-AccountDetailContainer.propTypes = {
-  actions: PropTypes.object.isRequired
-};
+AccountDetailContainer.propTypes = {};
 
 function mapStateToProps(state) {
   return {

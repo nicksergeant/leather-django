@@ -1,4 +1,5 @@
 import * as filters from '../../../filters/accounts';
+import Modal from '../../modal';
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import md5 from 'md5';
@@ -9,6 +10,13 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 class AsideContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      addAccountModalVisibility: false
+    };
+  }
+
   componentDidMount() {
     let env;
     let webhook;
@@ -61,6 +69,18 @@ class AsideContainer extends Component {
     return 0;
   };
 
+  addAccountClose() {
+    this.setState({
+      addAccountModalVisibility: false
+    });
+  }
+
+  addAccountOpen() {
+    this.setState({
+      addAccountModalVisibility: true
+    });
+  }
+
   userAvatar() {
     if (!this.props.user.email) return;
     const hash = md5(this.props.user.email);
@@ -70,6 +90,50 @@ class AsideContainer extends Component {
   render() {
     return (
       <aside className={styles.root}>
+        <Modal
+            heading="Add Account"
+            onClose={this.addAccountClose.bind(this)}
+            visible={this.state.addAccountModalVisibility}>
+          <div className="slds-grid">
+            <div className="slds-size--1-of-2">
+              <h3 className="slds-section__title slds-p-bottom--medium">Create manually:</h3>
+              <div className="slds-form-element slds-p-bottom--small">
+                <label className="slds-form-element__label" for="text-input-01">Account name</label>
+                <div className="slds-form-element__control">
+                  <input className="slds-input" id="text-input-01" placeholder="e.g., Amex" type="text" />
+                </div>
+              </div>
+              <div className="slds-form-element slds-p-bottom--small">
+                <label className="slds-form-element__label" for="select-01">Account type</label>
+                <div className="slds-form-element__control">
+                  <div className="slds-select_container">
+                    <select className="slds-select" id="select-01">
+                      <option>Checking</option>
+                      <option>Credit</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div className="slds-form-element">
+                <label className="slds-form-element__label" for="text-input-01">Starting balance</label>
+                <div className="slds-form-element__control">
+                  <input className="slds-input" id="text-input-01" placeholder="e.g., 0.00" type="text" />
+                </div>
+              </div>
+            </div>
+            <div className="slds-size--1-of-2 slds-p-left--large">
+              <h3 className="slds-section__title slds-p-bottom--medium">Create from a real account:</h3>
+              <button
+                  className="slds-button slds-button--neutral"
+                  ref="linkAccount">
+                <svg aria-hidden="true" className="slds-button__icon slds-button__icon--left">
+                  <use xlinkHref="/static/slds/assets/icons/utility-sprite/svg/symbols.svg#link" />
+                </svg>
+                Link your bank account
+              </button>
+            </div>
+          </div>
+        </Modal>
         <Link className={styles.logo} to="/">
           <img alt="Leather" className={styles.logoImg} src="/static/img/logo.png" />
         </Link>
@@ -91,11 +155,14 @@ class AsideContainer extends Component {
               );
             })}
             <li className="slds-align--absolute-center slds-m-top--small">
-              <button className="slds-button slds-button--neutral" ref="linkAccount">
+              <button
+                  className={styles.addAccount + ' slds-button slds-button--neutral'}
+                  onClick={this.addAccountOpen.bind(this)}
+                  ref="addAccount">
                 <svg aria-hidden="true" className="slds-button__icon slds-button__icon--left">
-                  <use xlinkHref="/static/slds/assets/icons/utility-sprite/svg/symbols.svg#download" />
+                  <use xlinkHref="/static/slds/assets/icons/utility-sprite/svg/symbols.svg#new" />
                 </svg>
-                Link your bank account
+                Add Account
               </button>
             </li>
           </ul>

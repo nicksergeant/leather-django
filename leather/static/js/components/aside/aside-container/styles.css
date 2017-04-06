@@ -4,6 +4,7 @@
   position: fixed;
   top: 0;
   width: 15rem;
+  z-index: 8999;
 }
 
 .logo {
@@ -19,12 +20,16 @@
 
 .accountLink {
   border-left-width: .25rem !important;
-}
-
+} 
 .accountName {
   font-weight: bold;
 }
 
 .balance {
   display: block;
+}
+
+.addAccount {
+  margin: 0 1.5rem;
+  width: 100%;
 }
