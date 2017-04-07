@@ -27,7 +27,7 @@ class TransactionInList extends Component {
             {date}
           </div>
         </td>
-        <td data-label="Transaction">
+        <td className={styles.td_no_padding} data-label="Transaction">
           <div className="slds-truncate" title={name}>
             <TransactionNameForm
               onUpdateTransaction={this.props.onUpdateTransaction}
@@ -35,7 +35,7 @@ class TransactionInList extends Component {
             />
           </div>
         </td>
-        <td data-label="Memo">
+        <td className={styles.td_no_padding} data-label="Memo">
           <div className="slds-truncate" title={transaction.memo}>
             <TransactionMemoForm
               onUpdateTransaction={this.props.onUpdateTransaction}

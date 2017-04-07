@@ -56,7 +56,7 @@ class TransactionNameForm extends Component {
 
     let justSaved;
     if (this.state.justSaved) {
-      justSaved = <span className="just-saved">Saved.</span>;
+      justSaved = <span className="just-saved"></span>;
     }
 
     const name = this.state.customName || this.props.transaction.name;
