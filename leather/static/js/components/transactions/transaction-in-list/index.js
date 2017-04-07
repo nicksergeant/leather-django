@@ -22,7 +22,7 @@ class TransactionInList extends Component {
 
     return (
       <tr>
-        <td data-label="Date">
+        <td className={styles.td_no_padding} data-label="Date">
           <div className="slds-truncate" title={date}>
             {date}
           </div>
@@ -43,7 +43,7 @@ class TransactionInList extends Component {
             />
           </div>
         </td>
-        <td data-label="Amount">
+        <td className={styles.td_no_padding} data-label="Amount">
           <div className="slds-truncate" title={amount}>
             {amount}
           </div>

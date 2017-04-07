@@ -7,7 +7,7 @@ class TransactionList extends Component {
     const transactions = this.props.transactions.splice(0, 20);
     return (
       <div>
-        <table className="slds-table slds-table--bordered slds-table--cell-buffer slds-table--striped">
+        <table className="slds-table slds-table--bordered slds-table--cell-buffer slds-table--striped slds-no-row-hover">
           <thead>
             <tr className="slds-text-title--caps">
               <th scope="col">
