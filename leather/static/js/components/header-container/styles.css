@@ -1,0 +1,15 @@
+.notifications_dropdown {
+  display: none;
+  position: absolute;
+  right: -.5rem;
+  top: 2.8rem;
+}
+
+.notifications_dropdown_is_open {
+  display: block;
+}
+
+.profile_dropdown {
+  margin-right: -.5rem !important;
+  margin-top: 1rem !important;
+}
