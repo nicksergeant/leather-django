@@ -1,5 +1,5 @@
 import AccountDetailContainer from './components/accounts/account-detail-container';
-import HomeContainer from './components/home/home-container';
+import HomeContainer from './components/home-container';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import request from 'superagent';

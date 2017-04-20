@@ -1,8 +1,8 @@
-import * as filters from '../../../filters/accounts';
-import Modal from '../../modal';
+import * as filters from '../../filters/accounts';
+import AccountAddForm from '../accounts/account-add-form';
+import Modal from '../modal';
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
-import md5 from 'md5';
 import request from 'superagent';
 import styles from './styles.css';
 import { Link } from 'react-router';
@@ -29,25 +29,28 @@ class AsideContainer extends Component {
       webhook = 'https://leatherapp.com/plaid/webhook/';
     }
 
-    const linkAccountHandler = Plaid.create({
-      clientName: 'Leather',
-      env: env,
-      key: 'db7f49f5182576046eb4620403f497',
-      longtail: true,
-      product: ['connect'],
-      webhook: webhook,
-      onSuccess: function(public_token, metadata) {
-        request
-          .post('/plaid-accounts/link/')
-          .type('form')
-          .send({ public_token: public_token })
-          .set('X-CSRFToken', window.LeatherGlobals.csrfToken)
-          .end();
-      },
-      onExit: function(err, metadata) {
-        if (err) { throw err; };
-      }
-    });
+    if (!window.LeatherGlobals.plaidInitialized) {
+      const linkAccountHandler = Plaid.create({
+        clientName: 'Leather',
+        env: env,
+        key: 'db7f49f5182576046eb4620403f497',
+        longtail: true,
+        product: ['connect'],
+        webhook: webhook,
+        onSuccess: function(public_token, metadata) {
+          request
+            .post('/plaid-accounts/link/')
+            .type('form')
+            .send({ public_token: public_token })
+            .set('X-CSRFToken', window.LeatherGlobals.csrfToken)
+            .end();
+        },
+        onExit: function(err, metadata) {
+          if (err) { throw err; };
+        }
+      });
+      window.LeatherGlobals.plaidInitialized = true;
+    }
 
     this.refs.linkAccount.onclick = function() {
       linkAccountHandler.open();
@@ -81,12 +84,6 @@ class AsideContainer extends Component {
     });
   }
 
-  userAvatar() {
-    if (!this.props.user.email) return;
-    const hash = md5(this.props.user.email);
-    return `https://www.gravatar.com/avatar/${hash}?s=200`;
-  };
-
   render() {
     return (
       <aside className={styles.root}>
@@ -95,32 +92,7 @@ class AsideContainer extends Component {
             onClose={this.addAccountClose.bind(this)}
             visible={this.state.addAccountModalVisibility}>
           <div className="slds-grid">
-            <div className="slds-size--1-of-2">
-              <h3 className="slds-section__title slds-p-bottom--medium">Create manually:</h3>
-              <div className="slds-form-element slds-p-bottom--small">
-                <label className="slds-form-element__label" htmlFor="text-input-01">Account name</label>
-                <div className="slds-form-element__control">
-                  <input className="slds-input" id="text-input-01" placeholder="e.g., Amex" type="text" />
-                </div>
-              </div>
-              <div className="slds-form-element slds-p-bottom--small">
-                <label className="slds-form-element__label" htmlFor="select-01">Account type</label>
-                <div className="slds-form-element__control">
-                  <div className="slds-select_container">
-                    <select className="slds-select" id="select-01">
-                      <option>Checking</option>
-                      <option>Credit</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div className="slds-form-element">
-                <label className="slds-form-element__label" htmlFor="text-input-01">Starting balance</label>
-                <div className="slds-form-element__control">
-                  <input className="slds-input" id="text-input-01" placeholder="e.g., 0.00" type="text" />
-                </div>
-              </div>
-            </div>
+            <AccountAddForm />
             <div className="slds-size--1-of-2 slds-p-left--large">
               <h3 className="slds-section__title slds-p-bottom--medium">Create from a real account:</h3>
               <button
@@ -134,9 +106,6 @@ class AsideContainer extends Component {
             </div>
           </div>
         </Modal>
-        <Link className={styles.logo} to="/">
-          <img alt="Leather" className={styles.logoImg} src="/static/img/logo.png" />
-        </Link>
         <div className="slds-grid slds-grid--vertical slds-navigation-list--vertical">
           <h2 className="slds-text-title--caps slds-p-around--medium" id="entity-header">Accounts</h2>
           <ul>
@@ -166,22 +135,6 @@ class AsideContainer extends Component {
               </button>
             </li>
           </ul>
-        </div>
-        <h2 className="slds-text-title--caps slds-p-around--medium" id="entity-header">Profile</h2>
-        <div className="slds-m-around--medium">
-          <div className="slds-tile slds-media">
-            <div className="slds-media__figure">
-              <span className="slds-avatar slds-avatar--circle slds-avatar--medium slds-m-bottom--small">
-                <img src={this.userAvatar()} />
-              </span>
-            </div>
-            <div className="slds-media__body">
-              <h3 className="slds-truncate" title={this.props.user.username}>{this.props.user.username}</h3>
-              <div className="slds-item--label slds-text-color--weak slds-truncate">{this.props.user.email}</div>
-            </div>
-          </div>
-          <a href="/password/change/">Change password</a><br />
-          <a href="/logout/">Logout</a>
         </div>
       </aside>
     );

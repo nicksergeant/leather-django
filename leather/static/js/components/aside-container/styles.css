@@ -2,7 +2,7 @@
   bottom: 0;
   border-right: 1px solid #EDEDED;
   position: fixed;
-  top: 0;
+  top: 3.125rem;
   width: 15rem;
   z-index: 8999;
 }

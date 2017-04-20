@@ -1,5 +1,5 @@
 import * as filters from '../../../filters/accounts';
-import AsideContainer from '../../aside/aside-container';
+import AppContainer from '../../app-container';
 import React, { Component, PropTypes } from 'react';
 import TransactionsContainer from '../../transactions/transactions-container';
 import styles from './styles.css';
@@ -25,12 +25,9 @@ class AccountDetailContainer extends Component {
     const transactions = filters.accountTransactions(account, this.props.transactions);
 
     return (
-      <section>
-        <AsideContainer accountSlug={this.props.params.accountSlug} />
-        <section className={styles.main}>
-          <TransactionsContainer showAccount={false} transactions={transactions} />
-        </section>
-      </section>
+      <AppContainer accountSlug={this.props.params.accountSlug}>
+        <TransactionsContainer showAccount={false} transactions={transactions} />
+      </AppContainer>
     );
   }
 }

@@ -6,13 +6,21 @@ from leather.users.views import LeatherRegistrationView
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
 
+    url(r'^admin$', lambda x: HttpResponseRedirect('/admin/')),
+    url(r'^login$', lambda x: HttpResponseRedirect('/login/')),
+    url(r'^logout$', lambda x: HttpResponseRedirect('/logout/')),
     url(r'^register/$', lambda x: HttpResponseRedirect('/signup/')),
+    url(r'^password\/change$',
+        lambda x: HttpResponseRedirect('/password/change/')),
+
     url(r'^signup/$', LeatherRegistrationView.as_view(),
         name='registration_register'),
+
     url(r'', include('registration.backends.default.urls')),
 
     url(r'^', include('leather.accounts.urls')),
-    url(r'^', include('leather.ingest.urls')),
     url(r'^', include('leather.api.urls')),
+    url(r'^', include('leather.ingest.urls')),
+
     url(r'^', include('leather.app.urls')),
 ]

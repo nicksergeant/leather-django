@@ -1,5 +1,5 @@
-import AccountList from '../../accounts/account-list';
-import AsideContainer from '../../aside/aside-container';
+import AccountList from '../accounts/account-list';
+import AppContainer from '../app-container';
 import React, { Component, PropTypes } from 'react';
 import styles from './styles.css';
 import { bindActionCreators } from 'redux';
@@ -8,12 +8,9 @@ import { connect } from 'react-redux';
 class HomeContainer extends Component {
   render() {
     return (
-      <div>
-        <AsideContainer accountSlug={this.props.params.accountSlug} />
-        <section className={styles.main}>
-          <AccountList />
-        </section>
-      </div>
+      <AppContainer accountSlug={this.props.params.accountSlug}>
+        <AccountList />
+      </AppContainer>
     );
   }
 }
