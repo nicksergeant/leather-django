@@ -1,14 +1,14 @@
+Django==1.11
+Markdown==2.6.7
 contextlib2==0.5.4
 dj-database-url==0.4.1
-Django==1.11
 django-annoying==0.10.3
 django-dotenv==1.4.1
 django-filter==1.0.1
-django-registration-redux==1.4
+django-registration==2.2
 django-webpack-loader==0.4.1
 djangorestframework==3.5.3
 gunicorn==19.6.0
-Markdown==2.6.7
 plaid-python==1.4.0
 psycopg2==2.6.2
 python-postmark==0.4.10

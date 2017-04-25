@@ -3,76 +3,80 @@
 {% block page-title %}Sign up - {{ block.super }}{% endblock %}
 
 {% block content %}
-  <form method="post" action=".">
-    {% if form.errors %}
-      {% if form.non_field_errors %}
-        <div>
-          {{ form.non_field_errors }}
-        </div>
-      {% else %}
-        <div>
-          Please fix the errors below.
+  <div class="slds-grid slds-grid--align-center slds-m-top--x-large">
+    <form method="post" action="." class="slds-p-around--medium slds-size--1-of-2">
+      {% if form.errors %}
+        <div class="slds-notify_container no-fixed slds-m-bottom--small">
+          <div class="slds-notify slds-notify--alert slds-theme--error slds-theme--alert-texture" role="alert">
+            <h2>
+              {% if form.non_field_errors %}
+                {{ form.non_field_errors }}
+              {% else %}
+                Please fix the errors below.
+              {% endif %}
+            </h2>
+          </div>
         </div>
       {% endif %}
-    {% endif %}
-    <fieldset>
-      <div>
-        <label for="id_username">Username</label>
-        <div>
-          {{ form.username }}
+      <div class="slds-form--stacked">
+        <div class="slds-form-element {% if form.errors.username %}slds-has-error{% endif %}">
+          <label class="slds-form-element__label" for="id_username">Username</label>
+          <div class="slds-form-element__control">
+            <input type="text" id="id_username" class="slds-input" name="username" value="{% firstof form.username.value '' %}" />
+          </div>
           {% if form.errors.username %}
             <span>
               {% for error in form.errors.username  %}
-                {{ error }}
+                <div id="error-message" class="slds-form-element__help">{{ error }}</div>
               {% endfor %}
             </span>
           {% endif %}
         </div>
-      </div>
-      <div>
-        <label for="id_email">Email address</label>
-        <div>
-          {{ form.email }}
+        <div class="slds-form-element {% if form.errors.email %}slds-has-error{% endif %}">
+          <label class="slds-form-element__label" for="id_email">Email</label>
+          <div class="slds-form-element__control">
+            <input type="text" id="id_email" class="slds-input" name="email" value="{% firstof form.email.value '' %}" />
+          </div>
           {% if form.errors.email %}
             <span>
               {% for error in form.errors.email  %}
-                {{ error }}
+                <div id="error-message" class="slds-form-element__help">{{ error }}</div>
               {% endfor %}
             </span>
           {% endif %}
         </div>
-      </div>
-      <div>
-        <label for="id_password1">Password</label>
-        <div>
-          {{ form.password1 }}
+        <div class="slds-form-element {% if form.errors.password1 %}slds-has-error{% endif %}">
+          <label class="slds-form-element__label" for="id_password">Password</label>
+          <div class="slds-form-element__control">
+            <input type="password" id="id_password" class="slds-input" name="password1" />
+          </div>
           {% if form.errors.password1 %}
             <span>
               {% for error in form.errors.password1  %}
-                {{ error }}
+                <div id="error-message" class="slds-form-element__help">{{ error }}</div>
               {% endfor %}
             </span>
           {% endif %}
         </div>
-      </div>
-      <div>
-        <label for="id_password2">Confirm password</label>
-        <div>
-          {{ form.password2 }}
+        <div class="slds-form-element {% if form.errors.password2 %}slds-has-error{% endif %}">
+          <label class="slds-form-element__label" for="id_password">Confirm Password</label>
+          <div class="slds-form-element__control">
+            <input type="password" id="id_password" class="slds-input" name="password2" />
+          </div>
           {% if form.errors.password2 %}
             <span>
               {% for error in form.errors.password2  %}
-                {{ error }}
+                <div id="error-message" class="slds-form-element__help">{{ error }}</div>
               {% endfor %}
             </span>
           {% endif %}
         </div>
       </div>
-      <div>
-        <a href="/login/">Log in</a>
-        <button type="submit">Sign up</button>
+      <div class="slds-m-top--large">
+        <button class="slds-button slds-button--brand" type="submit">Sign up</button>
       </div>
-    </fieldset>
-    {% csrf_token %}
-  </form>
+      <input type="hidden" name="next" value="{% firstof next '/' %}" />
+      {% csrf_token %}
+    </form>
+  </div>
 {% endblock %}

@@ -15,3 +15,7 @@ a.logo:hover {
 div.slds-text-heading--large {
   font-size: 2.75rem;
 }
+
+.no-fixed {
+  position: static !important;
+}

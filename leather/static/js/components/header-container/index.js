@@ -35,8 +35,6 @@ class HeaderContainer extends Component {
     const notificationsDropdownClass = this.state.notificationsDropdownIsOpen ? styles.notifications_dropdown_is_open : '';
     const profileDropdownClass = this.state.profileDropdownIsOpen ? 'slds-is-open' : '';
 
-    console.log(notificationsDropdownClass);
-
     return (
       <header className="slds-global-header_container">
         <div className="slds-global-header slds-grid slds-grid--align-spread">

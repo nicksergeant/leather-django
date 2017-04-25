@@ -1,5 +1,4 @@
 from .signals import activate_user
-from .views import LeatherRegistrationView
 from django.contrib.auth.models import User
 from django.test import RequestFactory, TestCase
 from unittest.mock import MagicMock, patch
@@ -36,10 +35,3 @@ class UsersSignalsTestCase(TestCase):
         """Logs in the authenticated user"""
         activate_user(self.user, self.request)
         login.assert_called_with(self.request, authenticate(self.user))
-
-
-class UsersViewsTestCase(TestCase):
-    def test_leather_registration_view(self):
-        """get_success_url returns '/'"""
-        instance = LeatherRegistrationView()
-        self.assertEqual(instance.get_success_url(None), '/')

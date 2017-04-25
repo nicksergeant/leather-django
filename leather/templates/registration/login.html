@@ -3,58 +3,60 @@
 {% block page-title %}Log in - {{ block.super }}{% endblock %}
 
 {% block content %}
-  <form method="post" action="/login/">
-    {% if request.GET.activationcomplete %}
-      <div>
-        Successfully confirmed email! Log in below.
-      </div>
-    {% endif %}
-    {% if form.errors %}
-      {% if form.non_field_errors %}
+  <div class="slds-grid slds-grid--align-center slds-m-top--x-large">
+    <form method="post" action="." class="slds-p-around--medium slds-size--1-of-2">
+      {% if request.GET.activationcomplete %}
         <div>
-          {{ form.non_field_errors }}
-        </div>
-      {% else %}
-        <div>
-          Please fix the errors below.
+          Successfully confirmed email! Log in below.
         </div>
       {% endif %}
-    {% endif %}
-      <fieldset>
-        <legend>Log in</legend>
-        <div>
-          <label for="id_username">Username:</label>
-          <div>
-            {{ form.username }}
-            {% if form.errors.username %}
-              <span>
-                {% for error in form.errors.username  %}
-                  {{ error }}
-                {% endfor %}
-              </span>
-            {% endif %}
+      {% if form.errors %}
+        <div class="slds-notify_container no-fixed slds-m-bottom--small">
+          <div class="slds-notify slds-notify--alert slds-theme--error slds-theme--alert-texture" role="alert">
+            <h2>
+              {% if form.non_field_errors %}
+                {{ form.non_field_errors }}
+              {% else %}
+                Please fix the errors below.
+              {% endif %}
+            </h2>
           </div>
         </div>
-        <div>
-          <label for="id_password">Password</label>
-          <div>
-            {{ form.password }}
-            {% if form.errors.password %}
-              <span>
-                {% for error in form.errors.password  %}
-                  {{ error }}
-                {% endfor %}
-              </span>
-            {% endif %}
+      {% endif %}
+      <div class="slds-form--stacked">
+        <div class="slds-form-element {% if form.errors.username %}slds-has-error{% endif %}">
+          <label class="slds-form-element__label" for="id_username">Username</label>
+          <div class="slds-form-element__control">
+            <input type="text" id="id_username" class="slds-input" name="username" value="{% firstof form.username.value '' %}" />
           </div>
+          {% if form.errors.username %}
+            <span>
+              {% for error in form.errors.username  %}
+                <div id="error-message" class="slds-form-element__help">{{ error }}</div>
+              {% endfor %}
+            </span>
+          {% endif %}
         </div>
-        <div>
-          <a href="/signup/">Sign up</a>
-          <a href="{% url 'auth_password_reset' %}">Reset password</a>
-          <button type="submit">Log in</button>
+        <div class="slds-form-element {% if form.errors.password %}slds-has-error{% endif %}">
+          <label class="slds-form-element__label" for="id_password">Password</label>
+          <div class="slds-form-element__control">
+            <input type="password" id="id_password" class="slds-input" name="password" />
+          </div>
+          {% if form.errors.password %}
+            <span>
+              {% for error in form.errors.password  %}
+                <div id="error-message" class="slds-form-element__help">{{ error }}</div>
+              {% endfor %}
+            </span>
+          {% endif %}
         </div>
-      </fieldset>
-      <input type="hidden" name="next" value="{{ next }}" />
+      </div>
+      <div class="slds-m-top--large">
+        <button class="slds-button slds-button--brand" type="submit">Log in</button>
+        <a class="slds-button slds-button--neutral" href="{% url 'auth_password_reset' %}">Reset password</a>
+      </div>
+      <input type="hidden" name="next" value="{% firstof next '/' %}" />
       {% csrf_token %}
-  </form>
+    </form>
+  </div>
 {% endblock %}
