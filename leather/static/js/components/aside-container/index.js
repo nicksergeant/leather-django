@@ -9,6 +9,8 @@ import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+let linkAccountHandler;
+
 class AsideContainer extends Component {
   constructor(props) {
     super(props);
@@ -30,7 +32,7 @@ class AsideContainer extends Component {
     }
 
     if (!window.LeatherGlobals.plaidInitialized) {
-      const linkAccountHandler = Plaid.create({
+      linkAccountHandler = Plaid.create({
         clientName: 'Leather',
         env: env,
         key: 'db7f49f5182576046eb4620403f497',
@@ -43,7 +45,9 @@ class AsideContainer extends Component {
             .type('form')
             .send({ public_token: public_token })
             .set('X-CSRFToken', window.LeatherGlobals.csrfToken)
-            .end();
+            .end((err, res) => {
+              window.location = window.location.href
+             });
         },
         onExit: function(err, metadata) {
           if (err) { throw err; };

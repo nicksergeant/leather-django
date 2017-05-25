@@ -47,7 +47,7 @@ def plaid_account_link(request):
 
         update_plaid_account(access_token, from_date)
 
-        return HttpResponseRedirect('/')
+        return HttpResponse('')
 
     return HttpResponse('')
 

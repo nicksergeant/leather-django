@@ -17,18 +17,18 @@ class AccountAddForm extends Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    // request
-    //   .patch(this.props.account.url)
-    //   .send({ custom_name: this.state.customName })
-    //   .set('X-CSRFToken', window.LeatherGlobals.csrfToken)
-    //   .set('Accept', 'application/json')
-    //   .end((err, res) => {
-    //     this.setState({ justSaved: true });
-    //     setTimeout(() => {
-    //       this.setState({ justSaved: false });
-    //     }, 2000);
-    //     this.props.onUpdateAccount(JSON.parse(res.text));
-    //   });
+    request
+      .patch(this.props.account.url)
+      .send({ custom_name: this.state.customName })
+      .set('X-CSRFToken', window.LeatherGlobals.csrfToken)
+      .set('Accept', 'application/json')
+      .end((err, res) => {
+        this.setState({ justSaved: true });
+        setTimeout(() => {
+          this.setState({ justSaved: false });
+        }, 2000);
+        this.props.onUpdateAccount(JSON.parse(res.text));
+      });
   }
 
   render() {
