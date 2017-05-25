@@ -40,7 +40,7 @@ class AccountAddForm extends Component {
             .send({ public_token: public_token })
             .set('X-CSRFToken', window.LeatherGlobals.csrfToken)
             .end((err, res) => {
-              window.location = window.location.href
+              window.location = window.location.href;
              });
         },
         onExit: function(err, metadata) {

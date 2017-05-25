@@ -14,6 +14,6 @@ describe('TransactionInList Component', () => {
 
   it('renders properly', () => {
     const comp = shallow(<TransactionInList transaction={{}} />);
-    expect(comp.type).to.eql('li');
+    expect(comp.type).to.eql('tr');
   });
 });

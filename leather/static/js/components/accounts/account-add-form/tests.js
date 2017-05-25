@@ -14,6 +14,6 @@ describe('AccountAddForm Component', () => {
 
   it('renders properly', () => {
     const comp = shallow(<AccountAddForm />);
-    expect(comp.props.children.type).to.eql('form');
+    expect(comp.props.children.type).to.eql();
   });
 });

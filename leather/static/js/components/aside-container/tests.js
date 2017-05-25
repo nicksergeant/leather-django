@@ -2,7 +2,7 @@ import 'sinon-as-promised';
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 import AsideContainer from './';
-import rootReducer from '../../../reducers/root';
+import rootReducer from '../../reducers/root';
 import sinon from 'sinon';
 import { createStore } from 'redux';
 import { expect } from 'chai';

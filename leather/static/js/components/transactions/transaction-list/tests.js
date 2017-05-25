@@ -14,6 +14,6 @@ describe('TransactionList Component', () => {
 
   it('renders properly', () => {
     const comp = shallow(<TransactionList transactions={[]} />);
-    expect(comp.props.children.type).to.eql('ul');
+    expect(comp.props.children.type).to.eql('table');
   });
 });

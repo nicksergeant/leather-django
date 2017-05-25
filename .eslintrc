@@ -25,7 +25,7 @@
     "curly": 0,
     "global-strict": 0,
     "jsx-quotes": 1,
-    "max-len": [2, 117, 2],
+    "max-len": [2, 250, 2],
     "no-console": 1,
     "no-process-exit": 0,
     "no-undef": 0,
