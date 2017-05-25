@@ -35,17 +35,7 @@ const Modal = React.createClass({
             </button>
             <h2 className="slds-text-heading--medium">{this.props.heading}</h2>
           </div>
-          <div className="slds-modal__content slds-p-around--medium" onClick={this.stopPropagation}>
-            {this.props.children}
-          </div>
-          <div className="slds-modal__footer" onClick={this.stopPropagation}>
-            <button
-              className="slds-button slds-button--neutral"
-              onClick={this.close}>
-                Cancel
-            </button>
-            <button className="slds-button slds-button--brand">Save</button>
-          </div>
+          {this.props.children}
         </div>
       </div>
       <div className="slds-backdrop slds-backdrop--open" />

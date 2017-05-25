@@ -1,7 +1,6 @@
 import * as AccountActions from '../../../actions/accounts';
 import * as TransactionActions from '../../../actions/transactions';
 import * as filters from '../../../filters/accounts';
-import AccountNameForm from '../../accounts/account-name-form';
 import React, { Component, PropTypes } from 'react';
 import TransactionsContainer from '../../transactions/transactions-container';
 import styles from './styles.css';
