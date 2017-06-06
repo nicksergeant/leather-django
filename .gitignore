@@ -8,6 +8,7 @@
 .gunicorn.pid
 .sass-cache
 .venv
+.vscode
 /leather/static/bundles
 /leather/static/css/styles.css
 /node_modules
