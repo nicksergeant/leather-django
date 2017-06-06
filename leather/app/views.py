@@ -3,7 +3,7 @@ from django.shortcuts import render
 
 
 def app(request):
-    if (request.user.is_authenticated()):
+    if request.user.is_authenticated():
         data = {}
 
         if settings.DEBUG and settings.DEBUG_WEBHOOK_IP:
