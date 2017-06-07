@@ -8,7 +8,7 @@ const Modal = React.createClass({
     this.props.onClose();
   },
   keybindings: {
-    'esc': function(e) {
+    esc: function(e) {
       this.close();
       e.preventDefault();
     }
@@ -17,29 +17,42 @@ const Modal = React.createClass({
     event.stopPropagation();
   },
   render: function() {
-    const visibilityClass = this.props.visible ?
-      styles.visible : styles.notVisible;
+    const visibilityClass = this.props.visible
+      ? styles.visible
+      : styles.notVisible;
     return (
       <div className={styles.root + ' ' + visibilityClass}>
-        <div className="slds-modal slds-fade-in-open" onClick={this.close} role="dialog" tabIndex="-1">
-        <div className="slds-modal__container">
-          <div className="slds-modal__header" onClick={this.stopPropagation}>
-            <button
+        <div
+          className="slds-modal slds-fade-in-open"
+          onClick={this.close}
+          role="dialog"
+          tabIndex="-1"
+        >
+          <div className="slds-modal__container">
+            <div className="slds-modal__header" onClick={this.stopPropagation}>
+              <button
                 className="slds-button slds-modal__close slds-button--icon-inverse"
                 onClick={this.close}
-                title="Close">
-              <svg aria-hidden="true" className="slds-button__icon slds-button__icon--large">
-                <use xlinkHref="/static/slds/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
-              </svg>
-              <span className="slds-assistive-text">Close</span>
-            </button>
-            <h2 className="slds-text-heading--medium">{this.props.heading}</h2>
+                title="Close"
+              >
+                <svg
+                  aria-hidden="true"
+                  className="slds-button__icon slds-button__icon--large"
+                >
+                  <use xlinkHref="/static/slds/assets/icons/utility-sprite/svg/symbols.svg#close" />
+                </svg>
+                <span className="slds-assistive-text">Close</span>
+              </button>
+              <h2 className="slds-text-heading--medium">
+                {this.props.heading}
+              </h2>
+            </div>
+            {this.props.children}
           </div>
-          {this.props.children}
         </div>
+        <div className="slds-backdrop slds-backdrop--open" />
       </div>
-      <div className="slds-backdrop slds-backdrop--open" />
-    </div>);
+    );
   }
 });
 

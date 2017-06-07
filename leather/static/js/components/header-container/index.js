@@ -11,29 +11,33 @@ class HeaderContainer extends Component {
       notificationsDropdownIsOpen: false,
       profileDropdownIsOpen: false
     };
-  };
+  }
 
   toggleNotificationsDropdown() {
     this.setState({
       notificationsDropdownIsOpen: !this.state.notificationsDropdownIsOpen
     });
-  };
+  }
 
   toggleProfileDropdown() {
     this.setState({
       profileDropdownIsOpen: !this.state.profileDropdownIsOpen
     });
-  };
+  }
 
   userAvatar() {
     if (!this.props.user.email) return;
     const hash = md5(this.props.user.email);
     return `https://www.gravatar.com/avatar/${hash}?s=200`;
-  };
+  }
 
   render() {
-    const notificationsDropdownClass = this.state.notificationsDropdownIsOpen ? styles.notifications_dropdown_is_open : '';
-    const profileDropdownClass = this.state.profileDropdownIsOpen ? 'slds-is-open' : '';
+    const notificationsDropdownClass = this.state.notificationsDropdownIsOpen
+      ? styles.notifications_dropdown_is_open
+      : '';
+    const profileDropdownClass = this.state.profileDropdownIsOpen
+      ? 'slds-is-open'
+      : '';
 
     return (
       <header className="slds-global-header_container">
@@ -41,7 +45,11 @@ class HeaderContainer extends Component {
           <div className="slds-global-header__item">
             <div className="slds-global-header__logo">
               <Link className={styles.logo} to="/">
-                <img alt="Leather" className={styles.logoImg} src="/static/img/logo.png" />
+                <img
+                  alt="Leather"
+                  className={styles.logoImg}
+                  src="/static/img/logo.png"
+                />
               </Link>
             </div>
           </div>
@@ -53,32 +61,56 @@ class HeaderContainer extends Component {
                 onClick={this.toggleNotificationsDropdown.bind(this)}
                 title="Notifications"
               >
-                <svg aria-hidden="true" className="slds-button__icon slds-global-header__icon">
+                <svg
+                  aria-hidden="true"
+                  className="slds-button__icon slds-global-header__icon"
+                >
                   <use xlinkHref="/static/slds/assets/icons/utility-sprite/svg/symbols.svg#notification" />
                 </svg>
                 <span className="slds-assistive-text">Notifications</span>
               </button>
-              <div className={styles.notifications_dropdown + ' ' + notificationsDropdownClass + ' slds-popover slds-popover--large slds-nubbin--top-right'} role="dialog">
+              <div
+                className={
+                  styles.notifications_dropdown +
+                  ' ' +
+                  notificationsDropdownClass +
+                  ' slds-popover slds-popover--large slds-nubbin--top-right'
+                }
+                role="dialog"
+              >
                 <div className="slds-popover__body slds-p-around--none">
                   <ul>
                     <li className="slds-global-header__notification slds-p-around--xx-small">
                       <div className="slds-media slds-has-flexi-truncate slds-p-around--x-small">
                         <div className="slds-media__figure">
-                          <span className="slds-icon_container slds-icon_container--circle slds-icon-action-description" title="description of icon when needed">
-                            <svg aria-hidden="true" className="slds-icon slds-icon--small">
+                          <span
+                            className="slds-icon_container slds-icon_container--circle slds-icon-action-description"
+                            title="description of icon when needed"
+                          >
+                            <svg
+                              aria-hidden="true"
+                              className="slds-icon slds-icon--small"
+                            >
                               <use xlinkHref="/static/slds/assets/icons/action-sprite/svg/symbols.svg#update" />
                             </svg>
-                            <span className="slds-assistive-text">Description of icon</span>
+                            <span className="slds-assistive-text">
+                              Description of icon
+                            </span>
                           </span>
                         </div>
                         <div className="slds-media__body">
                           <div className="slds-grid slds-grid--align-spread">
-                            <Link className="slds-text-link--reset slds-has-flexi-truncate" to="/accounts/blue-cash-preferredsm-2">
+                            <Link
+                              className="slds-text-link--reset slds-has-flexi-truncate"
+                              to="/accounts/blue-cash-preferredsm-2"
+                            >
                               <h3 className="slds-truncate">
                                 <strong>1 new transaction</strong>
                               </h3>
                               <p className="slds-truncate">Capital One</p>
-                              <p className="slds-m-top--x-small slds-text-color--weak">23m ago</p>
+                              <p className="slds-m-top--x-small slds-text-color--weak">
+                                23m ago
+                              </p>
                             </Link>
                           </div>
                         </div>
@@ -87,21 +119,34 @@ class HeaderContainer extends Component {
                     <li className="slds-global-header__notification slds-p-around--xx-small">
                       <div className="slds-media slds-has-flexi-truncate slds-p-around--x-small">
                         <div className="slds-media__figure">
-                          <span className="slds-icon_container slds-icon_container--circle slds-icon-action-description" title="description of icon when needed">
-                            <svg aria-hidden="true" className="slds-icon slds-icon--small">
+                          <span
+                            className="slds-icon_container slds-icon_container--circle slds-icon-action-description"
+                            title="description of icon when needed"
+                          >
+                            <svg
+                              aria-hidden="true"
+                              className="slds-icon slds-icon--small"
+                            >
                               <use xlinkHref="/static/slds/assets/icons/action-sprite/svg/symbols.svg#update" />
                             </svg>
-                            <span className="slds-assistive-text">Description of icon</span>
+                            <span className="slds-assistive-text">
+                              Description of icon
+                            </span>
                           </span>
                         </div>
                         <div className="slds-media__body">
                           <div className="slds-grid slds-grid--align-spread">
-                            <Link className="slds-text-link--reset slds-has-flexi-truncate" to="/accounts/blue-cash-preferredsm-2">
+                            <Link
+                              className="slds-text-link--reset slds-has-flexi-truncate"
+                              to="/accounts/blue-cash-preferredsm-2"
+                            >
                               <h3 className="slds-truncate">
                                 <strong>3 new transactions</strong>
                               </h3>
                               <p className="slds-truncate">Amex Blue Cash</p>
-                              <p className="slds-m-top--x-small slds-text-color--weak">6h ago</p>
+                              <p className="slds-m-top--x-small slds-text-color--weak">
+                                6h ago
+                              </p>
                             </Link>
                           </div>
                         </div>
@@ -111,7 +156,12 @@ class HeaderContainer extends Component {
                 </div>
               </div>
             </li>
-            <li className={profileDropdownClass + ' slds-dropdown-trigger slds-dropdown-trigger--click slds-m-left--x-small'}>
+            <li
+              className={
+                profileDropdownClass +
+                ' slds-dropdown-trigger slds-dropdown-trigger--click slds-m-left--x-small'
+              }
+            >
               <button
                 aria-haspopup="true"
                 className="slds-button"
@@ -122,12 +172,20 @@ class HeaderContainer extends Component {
                   <img alt="person name" src={this.userAvatar()} />
                 </span>
               </button>
-              <div className={styles.profile_dropdown + ' slds-dropdown slds-dropdown--right slds-nubbin--top-right'}>
+              <div
+                className={
+                  styles.profile_dropdown +
+                  ' slds-dropdown slds-dropdown--right slds-nubbin--top-right'
+                }
+              >
                 <ul className="slds-dropdown__list" role="menu">
                   <li className="slds-dropdown__item" role="presentation">
                     <a href="/password/change/" role="menuitem" tabIndex="0">
                       <span className="slds-truncate">
-                        <svg aria-hidden="true" className="slds-button__icon slds-button__icon--left">
+                        <svg
+                          aria-hidden="true"
+                          className="slds-button__icon slds-button__icon--left"
+                        >
                           <use xlinkHref="/static/slds/assets/icons/utility-sprite/svg/symbols.svg#reset_password" />
                         </svg>
                         Change password
@@ -137,7 +195,10 @@ class HeaderContainer extends Component {
                   <li className="slds-dropdown__item" role="presentation">
                     <a href="/logout/" role="menuitem" tabIndex="1">
                       <span className="slds-truncate">
-                        <svg aria-hidden="true" className="slds-button__icon slds-button__icon--left">
+                        <svg
+                          aria-hidden="true"
+                          className="slds-button__icon slds-button__icon--left"
+                        >
                           <use xlinkHref="/static/slds/assets/icons/utility-sprite/svg/symbols.svg#logout" />
                         </svg>
                         Log out
@@ -169,7 +230,4 @@ function mapDispatchToProps(dispatch) {
   return {};
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(HeaderContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderContainer);

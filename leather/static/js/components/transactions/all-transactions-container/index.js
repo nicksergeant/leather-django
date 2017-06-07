@@ -45,7 +45,6 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(AllTransactionsContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(
+  AllTransactionsContainer
+);

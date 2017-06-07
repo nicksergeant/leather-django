@@ -1,7 +1,7 @@
 import { MONTH_NAMES_SHORT } from '../constants/dates';
 
 export function accountTransactions(account, transactions) {
-  return transactions.filter((t) => {
+  return transactions.filter(t => {
     return t.account_id === account.id;
   });
 }
@@ -14,7 +14,7 @@ export function balance(account, allTransactions) {
 
   if (!transactions.length) return;
 
-  const amounts = transactions.map((transaction) => {
+  const amounts = transactions.map(transaction => {
     return transaction.amount;
   });
 
@@ -28,7 +28,7 @@ export function balance(account, allTransactions) {
 }
 
 export function niceNumber(num) {
-    return '$' + num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  return '$' + num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
 export function transactionAmount(transaction) {

@@ -1,8 +1,8 @@
-import AsideContainer from "../aside-container";
-import HeaderContainer from "../header-container";
-import React, { Component, PropTypes } from "react";
-import styles from "./styles.css";
-import { connect } from "react-redux";
+import AsideContainer from '../aside-container';
+import HeaderContainer from '../header-container';
+import React, { Component, PropTypes } from 'react';
+import styles from './styles.css';
+import { connect } from 'react-redux';
 
 class AppContainer extends Component {
   render() {

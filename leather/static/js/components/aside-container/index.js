@@ -22,7 +22,7 @@ class AsideContainer extends Component {
       return 'slds-is-active';
     }
     return '';
-  };
+  }
 
   alphaSort(a, b) {
     const aName = a.custom_name || a.name;
@@ -30,7 +30,7 @@ class AsideContainer extends Component {
     if (aName < bName) return -1;
     if (aName > bName) return 1;
     return 0;
-  };
+  }
 
   addAccountClose() {
     this.setState({
@@ -48,23 +48,39 @@ class AsideContainer extends Component {
     return (
       <aside className={styles.root}>
         <Modal
-            heading="Add Account"
-            onClose={this.addAccountClose.bind(this)}
-            visible={this.state.addAccountModalVisibility}>
+          heading="Add Account"
+          onClose={this.addAccountClose.bind(this)}
+          visible={this.state.addAccountModalVisibility}
+        >
           <AccountAddForm
             globals={this.props.globals}
             onClose={this.addAccountClose.bind(this)}
           />
         </Modal>
         <div className="slds-grid slds-grid--vertical slds-navigation-list--vertical">
-          <h2 className="slds-text-title--caps slds-p-around--medium" id="entity-header">Accounts</h2>
+          <h2
+            className="slds-text-title--caps slds-p-around--medium"
+            id="entity-header"
+          >
+            Accounts
+          </h2>
           <ul>
-            {this.props.accounts.sort(this.alphaSort).map((account) => {
+            {this.props.accounts.sort(this.alphaSort).map(account => {
               return (
-                <li className={this.isActive(account.slug, this.props.accountSlug)} key={account.id}>
+                <li
+                  className={this.isActive(
+                    account.slug,
+                    this.props.accountSlug
+                  )}
+                  key={account.id}
+                >
                   <Link
-                    className={'slds-navigation-list--vertical__action slds-text-link--reset ' + styles.accountLink}
-                    to={'/accounts/' + account.slug}>
+                    className={
+                      'slds-navigation-list--vertical__action slds-text-link--reset ' +
+                      styles.accountLink
+                    }
+                    to={'/accounts/' + account.slug}
+                  >
                     <span className={styles.accountName}>{account.name}</span>
                     <span className={styles.balance}>
                       {filters.balance(account, this.props.transactions)}
@@ -75,10 +91,16 @@ class AsideContainer extends Component {
             })}
             <li className="slds-align--absolute-center slds-m-top--small">
               <button
-                  className={styles.addAccount + ' slds-button slds-button--neutral'}
-                  onClick={this.addAccountOpen.bind(this)}
-                  ref="addAccount">
-                <svg aria-hidden="true" className="slds-button__icon slds-button__icon--left">
+                className={
+                  styles.addAccount + ' slds-button slds-button--neutral'
+                }
+                onClick={this.addAccountOpen.bind(this)}
+                ref="addAccount"
+              >
+                <svg
+                  aria-hidden="true"
+                  className="slds-button__icon slds-button__icon--left"
+                >
                   <use xlinkHref="/static/slds/assets/icons/utility-sprite/svg/symbols.svg#new" />
                 </svg>
                 Add Account
@@ -106,7 +128,4 @@ function mapDispatchToProps(dispatch) {
   return {};
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(AsideContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(AsideContainer);

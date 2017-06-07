@@ -12,7 +12,9 @@ class TransactionNameForm extends Component {
   }
 
   componentWillReceiveProps(props) {
-    this.setState({ customName: props.transaction.custom_name || props.transaction.name });
+    this.setState({
+      customName: props.transaction.custom_name || props.transaction.name
+    });
   }
 
   handleKeyDown(event) {
@@ -30,8 +32,10 @@ class TransactionNameForm extends Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    if (this.state.customName === this.props.transaction.name &&
-        _.isEmpty(this.props.transaction.custom_name)) {
+    if (
+      this.state.customName === this.props.transaction.name &&
+      _.isEmpty(this.props.transaction.custom_name)
+    ) {
       return false;
     }
 
@@ -56,7 +60,7 @@ class TransactionNameForm extends Component {
 
     let justSaved;
     if (this.state.justSaved) {
-      justSaved = <span className="just-saved"></span>;
+      justSaved = <span className="just-saved" />;
     }
 
     const name = this.state.customName || this.props.transaction.name;

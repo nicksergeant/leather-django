@@ -31,7 +31,7 @@
     "no-undef": 0,
     "no-underscore-dangle": 0,
     "padded-blocks": [2, "never"],
-    "quotes": [1, "double"],
+    "quotes": [1, "single"],
     "react/display-name": 0,
     "react/jsx-boolean-value": 1,
     "react/jsx-no-undef": 0,

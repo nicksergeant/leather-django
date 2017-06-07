@@ -14,7 +14,9 @@ class TransactionList extends Component {
                 <div className="slds-truncate" title="Date">Date</div>
               </th>
               <th scope="col">
-                <div className="slds-truncate" title="Transaction">Transaction</div>
+                <div className="slds-truncate" title="Transaction">
+                  Transaction
+                </div>
               </th>
               <th scope="col">
                 <div className="slds-truncate" title="Memo">Memo</div>
@@ -25,7 +27,7 @@ class TransactionList extends Component {
             </tr>
           </thead>
           <tbody>
-            {transactions.map((transaction) => {
+            {transactions.map(transaction => {
               return (
                 <TransactionInList
                   key={`transaction-${transaction.id}`}

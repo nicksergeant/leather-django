@@ -9,7 +9,7 @@ import { expect } from 'chai';
 
 describe('AllTransactionsContainer Component', () => {
   const store = createStore(rootReducer);
-  const shallow = (component) => {
+  const shallow = component => {
     const renderer = TestUtils.createRenderer();
     renderer.render(component);
     return renderer.getRenderOutput();

@@ -6,7 +6,7 @@ import sinon from 'sinon';
 import { expect } from 'chai';
 
 describe('AccountAddForm Component', () => {
-  const shallow = (component) => {
+  const shallow = component => {
     const renderer = TestUtils.createRenderer();
     renderer.render(component);
     return renderer.getRenderOutput();

@@ -1,10 +1,10 @@
-import * as filters from "../../../filters/accounts";
-import AppContainer from "../../app-container/index";
-import React, { Component, PropTypes } from "react";
-import TransactionsContainer from "../../transactions/transactions-container/index";
-import styles from "./styles.css";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
+import * as filters from '../../../filters/accounts';
+import AppContainer from '../../app-container/index';
+import React, { Component, PropTypes } from 'react';
+import TransactionsContainer from '../../transactions/transactions-container/index';
+import styles from './styles.css';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 class AccountDetailContainer extends Component {
   render() {

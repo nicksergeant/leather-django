@@ -17,7 +17,7 @@ export default function transactions(state = initialState, action) {
       ];
 
     case ADD_TRANSACTIONS:
-      const transactionsToAdd = action.transactions.map((transaction) => {
+      const transactionsToAdd = action.transactions.map(transaction => {
         return Object.assign({}, transaction, {
           date: new Date(transaction.date)
         });
@@ -25,13 +25,13 @@ export default function transactions(state = initialState, action) {
       return state.concat(transactionsToAdd);
 
     case UPDATE_TRANSACTION:
-      return state.map(transaction =>
-        transaction.id === action.transaction.id ?
-          Object.assign({},
-            transaction,
-            action.transaction,
-            { date: new Date(action.transaction.date) }
-          ) : transaction
+      return state.map(
+        transaction =>
+          transaction.id === action.transaction.id
+            ? Object.assign({}, transaction, action.transaction, {
+                date: new Date(action.transaction.date)
+              })
+            : transaction
       );
 
     default:

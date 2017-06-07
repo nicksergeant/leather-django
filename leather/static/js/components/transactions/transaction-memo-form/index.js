@@ -50,7 +50,7 @@ class TransactionMemoForm extends Component {
 
     let justSaved;
     if (this.state.justSaved) {
-      justSaved = <span className="just-saved"></span>;
+      justSaved = <span className="just-saved" />;
     }
 
     return (

@@ -2,15 +2,12 @@ import React, { PropTypes, Component } from 'react';
 import request from 'superagent';
 import styles from './styles.css';
 
-
 let linkAccountHandler;
 
 class AccountAddForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-
-    };
+    this.state = {};
   }
 
   componentDidMount() {
@@ -19,7 +16,8 @@ class AccountAddForm extends Component {
 
     if (this.props.globals.debug) {
       env = 'tartan';
-      webhook = `http://${this.props.globals.debugWebhookIP}:8000/plaid/webhook/`;
+      webhook = `http://${this.props.globals
+        .debugWebhookIP}:8000/plaid/webhook/`;
     } else {
       env = 'production';
       webhook = 'https://leatherapp.com/plaid/webhook/';
@@ -41,10 +39,12 @@ class AccountAddForm extends Component {
             .set('X-CSRFToken', window.LeatherGlobals.csrfToken)
             .end((err, res) => {
               window.location = window.location.href;
-             });
+            });
         },
         onExit: function(err, metadata) {
-          if (err) { throw err; };
+          if (err) {
+            throw err;
+          }
         }
       });
       window.LeatherGlobals.plaidInitialized = true;
@@ -55,15 +55,10 @@ class AccountAddForm extends Component {
     };
   }
 
-
-  handleChange(event) {
-
-  }
+  handleChange(event) {}
 
   handleSubmit(event) {
     event.preventDefault();
-
-    console.log('sup');
 
     // request
     //   .patch(this.props.account.url)
@@ -86,18 +81,35 @@ class AccountAddForm extends Component {
   render() {
     return (
       <div>
-        <div className="slds-modal__content slds-p-around--medium" onClick={this.stopPropagation}>
+        <div
+          className="slds-modal__content slds-p-around--medium"
+          onClick={this.stopPropagation}
+        >
           <div className="slds-grid">
             <form className="slds-size--1-of-2">
-              <h3 className="slds-section__title slds-p-bottom--medium">Create manually:</h3>
+              <h3 className="slds-section__title slds-p-bottom--medium">
+                Create manually:
+              </h3>
               <div className="slds-form-element slds-p-bottom--small">
-                <label className="slds-form-element__label" htmlFor="text-input-01">Account name</label>
+                <label
+                  className="slds-form-element__label"
+                  htmlFor="text-input-01"
+                >
+                  Account name
+                </label>
                 <div className="slds-form-element__control">
-                  <input className="slds-input" id="text-input-01" placeholder="e.g., Amex" type="text" />
+                  <input
+                    className="slds-input"
+                    id="text-input-01"
+                    placeholder="e.g., Amex"
+                    type="text"
+                  />
                 </div>
               </div>
               <div className="slds-form-element slds-p-bottom--small">
-                <label className="slds-form-element__label" htmlFor="select-01">Account type</label>
+                <label className="slds-form-element__label" htmlFor="select-01">
+                  Account type
+                </label>
                 <div className="slds-form-element__control">
                   <div className="slds-select_container">
                     <select className="slds-select" id="select-01">
@@ -108,18 +120,34 @@ class AccountAddForm extends Component {
                 </div>
               </div>
               <div className="slds-form-element">
-                <label className="slds-form-element__label" htmlFor="text-input-01">Starting balance</label>
+                <label
+                  className="slds-form-element__label"
+                  htmlFor="text-input-01"
+                >
+                  Starting balance
+                </label>
                 <div className="slds-form-element__control">
-                  <input className="slds-input" id="text-input-01" placeholder="e.g., 0.00" type="text" />
+                  <input
+                    className="slds-input"
+                    id="text-input-01"
+                    placeholder="e.g., 0.00"
+                    type="text"
+                  />
                 </div>
               </div>
             </form>
             <div className="slds-size--1-of-2 slds-p-left--large">
-              <h3 className="slds-section__title slds-p-bottom--medium">Create from a real account:</h3>
+              <h3 className="slds-section__title slds-p-bottom--medium">
+                Create from a real account:
+              </h3>
               <button
-                  className="slds-button slds-button--neutral"
-                  ref="linkAccount">
-                <svg aria-hidden="true" className="slds-button__icon slds-button__icon--left">
+                className="slds-button slds-button--neutral"
+                ref="linkAccount"
+              >
+                <svg
+                  aria-hidden="true"
+                  className="slds-button__icon slds-button__icon--left"
+                >
                   <use xlinkHref="/static/slds/assets/icons/utility-sprite/svg/symbols.svg#link" />
                 </svg>
                 Link your bank account
@@ -130,10 +158,14 @@ class AccountAddForm extends Component {
         <div className="slds-modal__footer" onClick={this.stopPropagation}>
           <button
             className="slds-button slds-button--neutral"
-            onClick={this.props.onClose}>
-              Cancel
+            onClick={this.props.onClose}
+          >
+            Cancel
           </button>
-          <button className="slds-button slds-button--brand" onClick={this.handleSubmit}>
+          <button
+            className="slds-button slds-button--brand"
+            onClick={this.handleSubmit}
+          >
             Save
           </button>
         </div>
