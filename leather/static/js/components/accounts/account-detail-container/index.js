@@ -1,10 +1,10 @@
-import * as filters from '../../../filters/accounts';
-import AppContainer from '../../app-container';
-import React, { Component, PropTypes } from 'react';
-import TransactionsContainer from '../../transactions/transactions-container';
-import styles from './styles.css';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import * as filters from "../../../filters/accounts";
+import AppContainer from "../../app-container/index";
+import React, { Component, PropTypes } from "react";
+import TransactionsContainer from "../../transactions/transactions-container/index";
+import styles from "./styles.css";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
 
 class AccountDetailContainer extends Component {
   render() {
@@ -12,7 +12,7 @@ class AccountDetailContainer extends Component {
       return <div />;
     }
 
-    let account = this.props.accounts.filter((ac) => {
+    let account = this.props.accounts.filter(ac => {
       return ac.slug === this.props.params.accountSlug;
     });
 
@@ -22,11 +22,17 @@ class AccountDetailContainer extends Component {
       account = account[0];
     }
 
-    const transactions = filters.accountTransactions(account, this.props.transactions);
+    const transactions = filters.accountTransactions(
+      account,
+      this.props.transactions
+    );
 
     return (
       <AppContainer accountSlug={this.props.params.accountSlug}>
-        <TransactionsContainer showAccount={false} transactions={transactions} />
+        <TransactionsContainer
+          showAccount={false}
+          transactions={transactions}
+        />
       </AppContainer>
     );
   }
@@ -45,7 +51,6 @@ function mapDispatchToProps(dispatch) {
   return {};
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(AccountDetailContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(
+  AccountDetailContainer
+);
