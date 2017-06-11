@@ -14,15 +14,28 @@ class TransactionList extends Component {
                 <div className="slds-truncate" title="Date">Date</div>
               </th>
               <th scope="col">
-                <div className="slds-truncate" title="Transaction">
+                <div
+                  className={styles.paddedHeader + ' slds-truncate'}
+                  title="Transaction"
+                >
                   Transaction
                 </div>
               </th>
               <th scope="col">
-                <div className="slds-truncate" title="Memo">Memo</div>
+                <div
+                  className={styles.paddedHeader + ' slds-truncate'}
+                  title="Memo"
+                >
+                  Memo
+                </div>
               </th>
               <th scope="col">
-                <div className="slds-truncate" title="Amount">Amount</div>
+                <div
+                  className={styles.paddedHeader + ' slds-truncate'}
+                  title="Amount"
+                >
+                  Amount
+                </div>
               </th>
             </tr>
           </thead>

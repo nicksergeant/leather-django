@@ -1,5 +1,6 @@
 import * as filters from '../../../filters/accounts';
 import React, { PropTypes, Component } from 'react';
+import TransactionAmountForm from '../transaction-amount-form';
 import TransactionMemoForm from '../transaction-memo-form';
 import TransactionNameForm from '../transaction-name-form';
 import styles from './styles.css';
@@ -8,12 +9,6 @@ class TransactionInList extends Component {
   render() {
     const transaction = this.props.transaction;
 
-    // let account;
-    // if (this.props.showAccount) {
-    //   const name = this.props.transaction.account.custom_name ||
-    //     this.props.transaction.account.name;
-    //   account = <a className="account" href={`/accounts/${this.props.transaction.account.id}/`}>{name}</a>;
-    // }
     const amount = filters.transactionAmount(transaction);
     const day = filters.transactionDay(transaction);
     const month = filters.transactionMonth(transaction);
@@ -45,7 +40,10 @@ class TransactionInList extends Component {
         </td>
         <td className={styles.td_no_padding} data-label="Amount">
           <div className="slds-truncate" title={amount}>
-            {amount}
+            <TransactionAmountForm
+              onUpdateTransaction={this.props.onUpdateTransaction}
+              transaction={transaction}
+            />
           </div>
         </td>
       </tr>
