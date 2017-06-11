@@ -26,7 +26,7 @@ if (app) {
     .get('/api/users/')
     .set('Accept', 'application/json')
     .end((err, res) => {
-      JSON.parse(res.text).results.map(result => {
+      res.body.results.map(result => {
         store.dispatch(updateUser(result));
       });
     });
@@ -35,7 +35,7 @@ if (app) {
     .get('/api/accounts/')
     .set('Accept', 'application/json')
     .end((err, res) => {
-      JSON.parse(res.text).results.map(result => {
+      res.body.results.map(result => {
         const transactions = result.transactions;
         delete result.transactions;
         store.dispatch(addTransactions(transactions));

@@ -1,6 +1,9 @@
+import * as AccountActions from '../../../actions/accounts';
 import React, { PropTypes, Component } from 'react';
 import request from 'superagent';
 import styles from './styles.css';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 let linkAccountHandler;
 
@@ -60,18 +63,28 @@ class AccountAddForm extends Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    // request
-    //   .patch(this.props.account.url)
-    //   .send({ custom_name: this.state.customName })
-    //   .set('X-CSRFToken', window.LeatherGlobals.csrfToken)
-    //   .set('Accept', 'application/json')
-    //   .end((err, res) => {
-    //     this.setState({ justSaved: true });
-    //     setTimeout(() => {
-    //       this.setState({ justSaved: false });
-    //     }, 2000);
-    //     this.props.onUpdateAccount(JSON.parse(res.text));
-    //   });
+    const name = this.refs.accountName.value;
+    const typ = this.refs.accountType.value;
+
+    if (!name || !typ) {
+      return;
+    }
+
+    const newAccountPayload = {
+      name: name,
+      typ: typ
+    };
+
+    request
+      .post('/api/accounts/')
+      .send(newAccountPayload)
+      .set('X-CSRFToken', window.LeatherGlobals.csrfToken)
+      .set('Accept', 'application/json')
+      .end((err, res) => {
+        this.props.actions.addAccount(res.body);
+        this.props.onClose();
+        this.refs.accountName.value = '';
+      });
   }
 
   stopPropagation(event) {
@@ -86,7 +99,10 @@ class AccountAddForm extends Component {
           onClick={this.stopPropagation}
         >
           <div className="slds-grid">
-            <form className="slds-size--1-of-2">
+            <form
+              className="slds-size--1-of-2"
+              onSubmit={this.handleSubmit.bind(this)}
+            >
               <h3 className="slds-section__title slds-p-bottom--medium">
                 Create manually:
               </h3>
@@ -102,6 +118,7 @@ class AccountAddForm extends Component {
                     className="slds-input"
                     id="text-input-01"
                     placeholder="e.g., Amex"
+                    ref="accountName"
                     type="text"
                   />
                 </div>
@@ -112,27 +129,15 @@ class AccountAddForm extends Component {
                 </label>
                 <div className="slds-form-element__control">
                   <div className="slds-select_container">
-                    <select className="slds-select" id="select-01">
-                      <option>Checking</option>
-                      <option>Credit</option>
+                    <select
+                      className="slds-select"
+                      id="select-01"
+                      ref="accountType"
+                    >
+                      <option value="checking">Checking</option>
+                      <option value="credit">Credit</option>
                     </select>
                   </div>
-                </div>
-              </div>
-              <div className="slds-form-element">
-                <label
-                  className="slds-form-element__label"
-                  htmlFor="text-input-01"
-                >
-                  Starting balance
-                </label>
-                <div className="slds-form-element__control">
-                  <input
-                    className="slds-input"
-                    id="text-input-01"
-                    placeholder="e.g., 0.00"
-                    type="text"
-                  />
                 </div>
               </div>
             </form>
@@ -164,7 +169,7 @@ class AccountAddForm extends Component {
           </button>
           <button
             className="slds-button slds-button--brand"
-            onClick={this.handleSubmit}
+            onClick={this.handleSubmit.bind(this)}
           >
             Save
           </button>
@@ -176,4 +181,14 @@ class AccountAddForm extends Component {
 
 AccountAddForm.propTypes = {};
 
-export default AccountAddForm;
+function mapStateToProps(state) {
+  return {};
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(AccountActions, dispatch)
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AccountAddForm);

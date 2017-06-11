@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 
 class AccountDetailContainer extends Component {
   render() {
-    if (!this.props.accounts.length || !this.props.transactions.length) {
+    if (!this.props.accounts.length) {
       return <div />;
     }
 

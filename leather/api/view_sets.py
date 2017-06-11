@@ -1,10 +1,8 @@
 from django.contrib.auth.models import User
-from leather.accounts.models import (Account,
-                                     Transaction)
-from leather.api.serializers import (AccountSerializer,
-                                     ProfileSerializer,
-                                     TransactionSerializer,
-                                     UserSerializer)
+
+from leather.accounts.models import Account, Transaction
+from leather.api.serializers import (AccountSerializer, ProfileSerializer,
+                                     TransactionSerializer, UserSerializer)
 from leather.users.models import Profile
 from rest_framework import viewsets
 from rest_framework.filters import OrderingFilter
@@ -16,6 +14,9 @@ class AccountViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         return Account.objects.filter(user=self.request.user)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
 
 
 class ProfileViewSet(viewsets.ModelViewSet):

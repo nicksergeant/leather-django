@@ -40,7 +40,7 @@ class TransactionMemoForm extends Component {
           setTimeout(() => {
             this.setState({ justSaved: false });
           }, 2000);
-          this.props.onUpdateTransaction(JSON.parse(res.text));
+          this.props.onUpdateTransaction(res.body);
         });
     }
   }
