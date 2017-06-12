@@ -134,7 +134,7 @@ class AccountAddForm extends Component {
                       id="select-01"
                       ref="accountType"
                     >
-                      <option value="checking">Checking</option>
+                      <option value="deposit">Checking or Savings</option>
                       <option value="credit">Credit</option>
                     </select>
                   </div>

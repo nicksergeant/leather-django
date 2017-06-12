@@ -1,11 +1,27 @@
 import * as filters from '../../../filters/accounts';
 import React, { PropTypes, Component } from 'react';
-import TransactionAmountForm from '../transaction-amount-form';
-import TransactionMemoForm from '../transaction-memo-form';
-import TransactionNameForm from '../transaction-name-form';
+import TransactionAmountForm from '../transaction-amount-form/index';
+import TransactionMemoForm from '../transaction-memo-form/index';
+import DeleteTransaction from '../delete-transaction/index';
+import TransactionNameForm from '../transaction-name-form/index';
 import styles from './styles.css';
 
 class TransactionInList extends Component {
+  constructor() {
+    super();
+    this.state = {
+      deleteButtonShown: false
+    };
+  }
+
+  showDeleteButton() {
+    this.setState({ deleteButtonShown: true });
+  }
+
+  hideDeleteButton() {
+    this.setState({ deleteButtonShown: false });
+  }
+
   render() {
     const transaction = this.props.transaction;
 
@@ -15,8 +31,17 @@ class TransactionInList extends Component {
     const name = transaction.custom_name || transaction.name;
     const date = month + ' ' + day;
 
+    let deleteButton;
+
+    if (this.state.deleteButtonShown) {
+      deleteButton = <DeleteTransaction transaction={transaction} />;
+    }
+
     return (
-      <tr>
+      <tr
+        onMouseEnter={this.showDeleteButton.bind(this)}
+        onMouseLeave={this.hideDeleteButton.bind(this)}
+      >
         <td className={styles.td_no_padding} data-label="Date">
           <div className="slds-truncate" title={date}>
             {date}
@@ -45,6 +70,7 @@ class TransactionInList extends Component {
               transaction={transaction}
             />
           </div>
+          {deleteButton}
         </td>
       </tr>
     );
