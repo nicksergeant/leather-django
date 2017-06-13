@@ -9,8 +9,8 @@
 5. `brew install yarn` (if necessary)
 6. `yarn`
 7. Install PostgreSQL somehow.
-8. `createdb leather`
-9. `createuser leather`
+8. `createuser leather`
+9. `createdb leather --owner=leather`
 10. `psql` and then:
 11. `grant all privileges on leather to leather;` (then `<Return>`)
 12. (exit psql CLI w/ `Ctrl-C`)
