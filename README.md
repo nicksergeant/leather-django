@@ -6,14 +6,13 @@
 2. `cd leather`
 3. `workon leather`
 4. `pip install -r requirements.txt`
-5. `brew install yarn` (if necessary)
+5. `brew install yarn postgresql` (if necessary)
 6. `yarn`
-7. Install PostgreSQL somehow.
-8. `createuser leather`
-9. `createdb leather --owner=leather`
-10. `python manage.py migrate`
-11. `python manage.py createsuperuser`
-12. Ask Nick for a `.env` file with some local Plaid dev keys, or create one
+7. `createuser leather`
+8. `createdb leather --owner=leather`
+9. `python manage.py migrate`
+10. `python manage.py createsuperuser`
+11. Ask Nick for a `.env` file with some local Plaid dev keys, or create one
 without Plaid access:
 
 ```
