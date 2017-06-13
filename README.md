@@ -11,12 +11,19 @@
 7. Install PostgreSQL somehow.
 8. `createuser leather`
 9. `createdb leather --owner=leather`
-10. `psql` and then:
-11. `grant all privileges on leather to leather;` (then `<Return>`)
-12. (exit psql CLI w/ `Ctrl-C`)
-13. `python manage.py migrate`
-14. `python manage.py createsuperuser`
-15. Ask Nick for a `.env` file with some local Plaid dev keys.
+10. `python manage.py migrate`
+11. `python manage.py createsuperuser`
+12. Ask Nick for a `.env` file with some local Plaid dev keys, or create one
+without Plaid access:
+
+```
+DEBUG=true
+PLAID_CLIENT_ID=123
+PLAID_SECRET=123
+POSTMARK_API_KEY=123
+SECRET_KEY=somethingsecret
+SERVER_EMAIL=user@domain.com
+```
 
 Then, run the app in two separate consoles:
 
