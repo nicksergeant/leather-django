@@ -15,7 +15,7 @@ describe('AsideContainer Component', () => {
     return renderer.getRenderOutput();
   };
 
-  it('renders properly', () => {
+  xit('renders properly', () => {
     const comp = shallow(<AsideContainer store={store} />);
     expect(comp.props.children).to.not.exist;
     expect(comp.props.store).to.exist;

@@ -15,7 +15,7 @@ describe('AccountDetailContainer Component', () => {
     return renderer.getRenderOutput();
   };
 
-  it('renders properly', () => {
+  xit('renders properly', () => {
     const comp = shallow(<AccountDetailContainer store={store} />);
     expect(comp.props.children).to.not.exist;
     expect(comp.props.store).to.exist;

@@ -12,7 +12,7 @@ describe('AccountList Component', () => {
     return renderer.getRenderOutput();
   };
 
-  it('renders properly', () => {
+  xit('renders properly', () => {
     const comp = shallow(<AccountList />);
     expect(comp.props.children.type).to.eql();
   });

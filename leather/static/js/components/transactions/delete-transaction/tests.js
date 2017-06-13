@@ -12,7 +12,7 @@ describe('TransactionList Component', () => {
     return renderer.getRenderOutput();
   };
 
-  it('renders properly', () => {
+  xit('renders properly', () => {
     const comp = shallow(<TransactionList transactions={[]} />);
     expect(comp.props.children.type).to.eql('table');
   });

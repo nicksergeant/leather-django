@@ -12,7 +12,7 @@ describe('TransactionMemoForm Component', () => {
     return renderer.getRenderOutput();
   };
 
-  it('renders properly', () => {
+  xit('renders properly', () => {
     const comp = shallow(<TransactionMemoForm transaction={{}} />);
     expect(comp.type).to.eql('form');
   });
