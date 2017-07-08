@@ -11,7 +11,7 @@ class TransactionAmountForm extends Component {
   }
 
   componentWillReceiveProps(props) {
-    this.setState({ customName: props.transaction.amount || '' });
+    this.setState({ amount: props.transaction.amount || '' });
   }
 
   handleKeyDown(event) {
